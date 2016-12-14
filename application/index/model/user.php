@@ -1,4 +1,9 @@
 <?php
 
+namespace app\index\model;
+use think\Model;
 
-echo 'hao';
+class User extends Model
+{
+	   protected $autoWriteTimestamp = 'timestamp';
+}

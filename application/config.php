@@ -83,7 +83,7 @@ return [
     // pathinfo分隔符
     'pathinfo_depr'          => '/',
     // URL伪静态后缀
-    'url_html_suffix'        => 'html',
+    'url_html_suffix'        => '',
     // URL普通方式参数 用于自动生成
     'url_common_param'       => false,
     // URL参数方式 0 按名称成对解析 1 按顺序解析
@@ -142,7 +142,9 @@ return [
     'view_replace_str'       => [
         '__SITE__' => 'http://www.goodjob.com',
         // '__STATIC__' => 'http://static.tp5.com/static'
-        '__STATIC__' => 'http://www.goodjob.com/static'
+        '__STATIC__' => 'http://www.goodjob.com/static',
+        '__STATI__' => 'http://www.goodjob.com'
+        
     ],
     // 默认跳转页面对应的模板文件
     'dispatch_success_tmpl'  => THINK_PATH . 'tpl' . DS . 'dispatch_jump.tpl',
@@ -207,7 +209,7 @@ return [
         // SESSION_ID的提交变量,解决flash上传跨域
         'var_session_id' => '',
         // SESSION 前缀
-        'prefix'         => 'think',
+        'prefix'         => '',
         // 驱动方式 支持redis memcache memcached
         'type'           => '',
         // 是否自动开启 SESSION
