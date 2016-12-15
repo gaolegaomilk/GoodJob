@@ -12,13 +12,13 @@ class Auth extends Controller
 {
 	public function __construct(Request $request)
 	{
-		// parent::__construct();
-		// // dump($request->controller());
-		// if(!$this->checkLogin() && $request->controller() != 'Auth')
-		// {
-		// 	$this->error('请登录');
+		parent::__construct();
+		// dump($request->controller());
+		if(!$this->checkLogin() && $request->controller() != 'Auth')
+		{
+			$this->error('请登录', '__ADMIN__SITE__/User/login');
 
-		// }
+		}
 	}
 	public function dolog()
 	{
@@ -58,6 +58,7 @@ class Auth extends Controller
 	}
 	public function checkLogin()
 	{
+		// dump(session('uid'));die;
 		return session('uid');
 	}
 

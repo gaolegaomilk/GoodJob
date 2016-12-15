@@ -12,6 +12,15 @@ class User extends Model
 	use SoftDelete;
 	protected static $deleteTime = 'delete_time';
 	protected  $autoWriteTimestamp = 'timestamp';
+
+
+	// public function num()
+	// {
+	// 	//$result = Db::name('user')->where('sex','<','27')->select();
+	// 	return db('personinfo')->where('age', 'between','18, 27')->count();
+	// 	return db('personinfo')->where('age', 'between','28, 37')->count();
+	// 	return db('personinfo')->where('age', 'between','38, 47')->count();
+	// }
 		/**
 	 * 查询所有没被删除的用户
 	 * @return [type] [description]

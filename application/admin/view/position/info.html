@@ -4,7 +4,7 @@
 <div class="view-product">
 	<div class="info-center">
 		<div class="manage-head">
-			<h6 class=" padding-left manage-head-con ">职位详情</h6>
+			<h6 class=" padding-left manage-head-con "><b>职位详情</b></h6>
 		</div><!--  -->
 		<div style="width:200px height:30px;position:absolute;top:10px;left:300px">
 		<form action="__ADMIN__SITE__/Position/option" method="post">		
@@ -15,7 +15,7 @@
 		<div></div>
 		<div style="margin-left:20px">
 			<table class="table table-hover" style="border:none;outline:medium;width:1143px">
-				<tr @brand-primary: #428bca;>
+				<tr class="info" style="font-weight:bold;font-size:14px;color:; ">
 					<td>编号</td>
 					<td>职位名称</td>
 					<td>所属行业</td>
@@ -29,7 +29,7 @@
 				</tr>
 				<div >
 				{volist name="findPosi" id="val"}
-				<tr id="none" class="tr">
+				<tr id="none" class="tr" style="font-size:14px;color:; ">
 					<td>{$val.pid}</td>
 					<td>{$val.position}</td>
 					{volist name="find" id="data"}

@@ -143,7 +143,8 @@ return [
         '__SITE__' => 'http://www.goodjob.com',
         // '__STATIC__' => 'http://static.tp5.com/static'
         '__STATIC__' => 'http://www.goodjob.com/static',
-        '__STATI__' => 'http://www.goodjob.com'
+        '__STATI__' => 'http://www.goodjob.com',
+        '__ADMIN__SITE__' => 'http://www.goodjob.com/admin'
         
     ],
     // 默认跳转页面对应的模板文件

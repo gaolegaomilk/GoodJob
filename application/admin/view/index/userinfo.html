@@ -1,13 +1,12 @@
 
-
 <div class="view-product">
 	<div class="info-center">
 		<div class="manage-head">
-			<h6 class=" padding-left manage-head-con ">用户管理</h6>
+			<h6 class=" padding-left manage-head-con "><b>普通用户</b></h6>
 		</div>
 		<div style="margin-left:20px">
 			<table class="table table-hover" style="border:none;outline:medium;width:1143px">
-				<tr>
+				<tr class="info" style="font-weight:bold;font-size:14px;color:;">
 					<td></td>
 					<td>编号</td>
 					<td>用户注册邮箱</td>
@@ -16,7 +15,7 @@
 					<td></td>
 				</tr>
 				{volist name="arr" id="data"}
-				<tr>
+				<tr style="font-size:14px;color:;">
 					<td></td>
 					<td>{$data.uid}</td>
 					<td>{$data.email}</td>

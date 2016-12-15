@@ -2,7 +2,7 @@
 <div class="view-product">
 <div class="info-center">
 		<div class="manage-head">
-			<h6 class=" padding-left manage-head-con ">行业管理</h6>
+			<h6 class=" padding-left manage-head-con "><b>行业管理</b></h6>
 		</div>
 		<button id="btn" type="button" class="btn btn-primary" style="position:absolute;top:7px;right:30px">添加行业</button>
 		<script>
@@ -14,14 +14,14 @@
 		
 		<div style="margin-left:20px">
 				<table class="table table-hover" style="border:none;outline:medium;width:1143px">
-					<tr>
+					<tr class="info" style="font-weight:bold;font-size:14px;">
 						<td> 编号</td>
 						<td>行业名称</td>
 						<td>创建时间</td>
 						<td></td>
 					</tr>
 					{volist name="result" id="data"}
-						<tr id="value">
+						<tr id="value" style="font-size:14px;">
 
 							<td><input type="checkbox" name="id" value="{$data.vid}" /></td>
 							<td>{$data.classname}</td>

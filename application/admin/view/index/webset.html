@@ -4,13 +4,12 @@
 
 <div class="view-product">
 	<div class="info-center">
-		<div class="manage-head">
-			<h6 class=" padding-left manage-head-con ">站点管理</h6>
+		<div class="manage-head " >
+			<h6 class=" padding-left manage-head-con "><b>站点管理</b></h6>
 		</div>
 		<div style="margin-left:20px">
-			
 				<table class="table table-hover" style="border:none;outline:medium;width:1143px">
-					<tr>
+					<tr class="info" style="font-weight:bold;font-size:14px;color:;">
 						<td></td>
 						<td>站点名称</td>
 						<td>域名</td>
@@ -18,7 +17,7 @@
 						<td></td>
 						<td></td>
 					</tr>
-					<tr>
+					<tr style="font-size:14px">
 						<td></td>
 						<td>goodjob</td>
 						<td>www.goodjob.com</td>						
@@ -32,6 +31,62 @@
 					</tr>		
 				</table>
 			
+		</div>
+	</div>
+
+
+	<div class="info-center">
+		<div class="manage-head">
+			<h6 class=" padding-left manage-head-con "><b>用户数量</b></h6>
+		</div>
+		<div style="margin-left:20px">
+			
+				<table class="table table-hover" style="border:none;outline:medium;width:1143px">
+					<tr class="info" style="font-weight:bold;font-size:14px">
+						<td></td>
+						<td>70后</td>
+						<td>80后</td>
+						<td>90后</td>
+						<td>其他</td>
+						<td></td>
+					</tr>
+					<tr style="font-size:14px;">
+						<td>数量</td>
+						<td>{$a70}</td>
+						<td>{$a80}</td>
+						<td>{$a90}</td>
+						<td>{$nuth}</td>
+						<td>单位:人</td>
+					</tr>
+				</table>
+			<div style="margin-left:;position:absolute;top:176px;left:1046px;"><b>总人数:</b><button type="button" class="btn btn-link">{$a80+$a70+$a90+$nuth}</button></div>
+		</div>
+	</div>
+	<div class="info-center">
+		<div class="manage-head">
+			<h6 class=" padding-left manage-head-con "><b>企业用户数量</b></h6>
+		</div>
+		<div style="margin-left:20px">
+			
+				<table class="table table-hover" style="border:none;outline:medium;width:1143px">
+					<tr class="info" style="font-weight:bold;font-size:14px">
+						<td></td>
+						<td>北京市</td>
+						<td>天津市</td>
+						<td>保定市</td>
+						<td>其它</td>
+						<td></td>
+					</tr>
+					<tr style="font-size:14px;">
+						<td>数量</td>
+						<td>{$cbeijing}</td>
+						<td>{$ctianjin}</td>
+						<td>{$cbaoding}</td>
+						<td>{$cnuth}</td>
+						<td>单位:人</td>
+					</tr>
+				</table>
+			<div style="margin-left:;position:absolute;top:326px;left:1046px;"><b>总数:</b><button type="button" class="btn btn-link">{$cbeijing+$ctianjin+$cbaoding+$cnuth}</button></div>
 		</div>
 	</div>
 </div>

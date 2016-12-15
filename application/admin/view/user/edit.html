@@ -2,7 +2,7 @@
 <div class="view-product background-color">
   <div class="padding-big background-color">
   <div class="manage-head">
-    <h1 class=" padding-left manage-head-con ">用户信息管理</h1>
+    <h1 class=" padding-left manage-head-con " >用户信息管理</h1>
   </div>
      <div class="dl_bacwrap dl_new_error_wrap"> 
       <div class="mainwrap"> 
@@ -27,9 +27,9 @@
               <li><label class="current label_required">性别：</label> 
               <!-- <label class="current label_required">性别：</label> -->
               {if $info[0]['sex']==0}
-              <input type="text" name="sex" value="男"/> </li>
-              {else}
               <input type="text" name="sex" value="女"/> </li>
+              {else}
+              <input type="text" name="sex" value="男"/> </li>
               {/if}
               <li><label class="current label_required">出生日期：</label> 
               <input type="text" name="birthday" value="{$info[0]['birthday']}" /></li> 
@@ -49,6 +49,13 @@
 
           </div> 
          </div> 
+         <div style="width:120px;height:180px;position:absolute;top:110px;left:465px">
+            {if empty($info[0]['picture'])}
+              <img src="__STATIC__/images/upfile.jpg" style="position:absolute" alt="">
+            {else}
+              <img src="__ADMIN__STATIC__/uploads/{$info[0]['picture']}" style="position:absolute" alt="">
+            {/if}
+         </div>
          <!-- <div id="imgContainer" class="dl_myrightfile" style="display: none;"> 
           <img id="idPhoto" style="width:120px;height:140px;" src="images/upfile.jpg" /> 
           <br /> 

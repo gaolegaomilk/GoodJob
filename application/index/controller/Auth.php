@@ -235,6 +235,9 @@ class Auth extends Controller
 			 				$find = Db::name('user')->where('uid',73)->find();
 							if($find['web'] == 1 || Session::get('user')['user_type'] == 2){
 								// dump(Session::get('user')['user_type']);
+								// 
+								// 
+								dump(session('uid'));die;
 								$this->success('登录成功', 'http://www.goodjob.com/index/index');
 							}else{
 								Session(null);
@@ -431,16 +434,6 @@ class Auth extends Controller
 		}else{
 			$this->error('您还没有填写简历','http://www.goodjob.com/index/user/info');
 		}
-		// foreach ($resumecom as $resume) {
-		// 	if (empty($resume['name'])) {
-		// 		echo '<script>alert("请先填写企业资料");parent.location.href="http://www.goodjob.com/index/user/gui";</script>';
-		// 	}
-		// 	$city = Db::name('city')->select();
-		// 	$vocation = Db::name('vocation')->select();
-		// 	$this->assign('city', $city);
-		// 	$this->assign('resumecom',$resumecom);
-		// 	$this->assign('vocation', $vocation);
-		// }
 		
 	}
 	//修改企业信息

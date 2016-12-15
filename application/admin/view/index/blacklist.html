@@ -1,11 +1,11 @@
 <div class="view-product">
 	<div class="info-center">
 		<div class="manage-head">
-			<h6 class=" padding-left manage-head-con ">用户管理</h6>
+			<h6 class=" padding-left manage-head-con "><b>用户管理</b></h6>
 		</div>
 		<div style="margin-left:20px">
 			<table class="table table-hover" style="border:none;outline:medium;width:1143px">
-				<tr>
+				<tr class="info" style="font-weight:bold;font-size:14px;color:;">
 					<td></td>
 					<td>用户id</td>
 					<td>用户注册邮箱</td>
@@ -13,9 +13,9 @@
 					<td>用户注册ip</td>
 					<td></td>
 				</tr>
-				<tr><td>企业用户</td></tr>
+				<tr><td style="font-size:14px"><b>企业用户</b></td></tr>
 				{volist name="result" id="data"}
-				<tr>
+				<tr style="font-size:14px;color:;">
 					<td></td>
 					<td>{$data.qid}</td>
 					<td>{$data.email}</td>
@@ -27,10 +27,15 @@
 				</tr>										
 				{/volist}
 				<tr>
-					<td>普通用户</td>
+					<td class="" style="font-size:14px"><b>普通用户</b></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
 				</tr>
 				{volist name="res" id="data"}
-					<tr>
+					<tr style="font-size:14px;color:;">
 					<td></td>
 					<td>{$data.uid}</td>
 					<td>{$data.email}</td>

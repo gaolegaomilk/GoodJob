@@ -26,8 +26,25 @@ class Index extends Auth
 	
 	public function zhu()
 	{
-		$result = Db::name('user')->select();
-		return view();
+		$a00 = db('personinfo')->where('age', 'between','1, 18')->count();
+		$a90 = db('personinfo')->where('age', 'between','18, 27')->count();
+		$a80 = db('personinfo')->where('age', 'between','28, 37')->count();
+		$a70 = db('personinfo')->where('age', 'between','38, 47')->count();
+		$nuth = db('personinfo')->where('age', '>','47')->count();
+		// dump($a00, $a90);die;
+		$cbeijing = db('business')->where('address','1')->count();
+		$ctianjin = db('business')->where('address','2')->count();
+		$cbaoding = db('business')->where('address','3')->count();
+		$cqinhuangdao = db('business')->where('address','4')->count();
+		$ctangshan = db('business')->where('address','5')->count();
+		// dump($ctangshan);die;
+		$czhangjiakou = db('business')->where('address','6')->count();
+		// dump($czhangjiakou);die;
+		$cchengde = db('business')->where('address','7')->count();
+		$ccangzhou = db('business')->where('address','8')->count();
+
+		//$result = Db::name('user')->select();
+		return view('',compact('a90','a80','a70','nuth','cbeijing','ctianjin','cbaoding','czhangjiakou','ccangzhou','ctangshan','cchengde','cqinhuangdao','a00'));
 	}
 	/**
 	 * 职位列表
@@ -120,7 +137,17 @@ class Index extends Auth
 	{
 		$result = Db::name('user')->where('uid',73)->find();
 		//dump($result);die();
-		return view('',compact('result'));
+		//
+		$a90 = db('personinfo')->where('age', 'between','18, 27')->count();
+		$a80 = db('personinfo')->where('age', 'between','28, 37')->count();
+		$a70 = db('personinfo')->where('age', 'between','38, 47')->count();
+		$nuth = db('personinfo')->where('age', 'not between','18, 47')->count();
+
+		$cbeijing = db('business')->where('address','1')->count();
+		$ctianjin = db('business')->where('address','2')->count();
+		$cbaoding = db('business')->where('address','3')->count();
+		$cnuth = db('business')->where('address','not in','1,2,3')->count();
+		return view('',compact('result','a90','a80','a70','nuth','cbeijing','ctianjin','cbaoding','czhangjiakou','cnuth'));
 	}
 
 

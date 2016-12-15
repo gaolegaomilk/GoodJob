@@ -28,7 +28,7 @@ class Position extends Model
 	 */
 	public function sel()
 	{
-		return Db::name('position')->paginate(5);
+		return Db::name('position')->paginate(10);
 	}
 	/**
 	 * 行业信息

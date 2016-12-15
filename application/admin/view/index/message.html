@@ -2,7 +2,7 @@
 <div class="view-product">
 	<div class="info-center">
 		<div class="manage-head">
-			<h6 class=" padding-left manage-head-con ">消息中心</h6>
+			<h6 class=" padding-left manage-head-con "><b>消息中心</b></h6>
 		</div>
 		<button id="btn" type="button" class="btn btn-primary" style="position:absolute;top:7px;right:30px">发布公告</button>
 		<script>
@@ -22,7 +22,7 @@
 		</div> -->
 		<div style="margin-left:20px">
 			<table class="table table-hover" style="border:none;outline:medium;width:1143px">
-				<tr>
+				<tr class="info"  style="font-weight:bold;font-size:14px;color:;">
 					<td></td>
 					<td>标题</td>
 					<td style="overflow:hidden">发布时间</td>
@@ -31,7 +31,7 @@
 					<td></td>
 				</tr>
 				{volist name="result" id="data"}
-				<tr>
+				<tr style="font-size:14px;">
 					<td></td>
 					<td>{$data.title}</td>
 					<td>{$time = date('Y-m-d',$data['create_time'])}</td>					

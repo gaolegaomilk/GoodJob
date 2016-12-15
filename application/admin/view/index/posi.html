@@ -3,21 +3,21 @@
 <div class="view-product">
 	<div class="info-center">
 		<div class="manage-head">
-			<h6 class=" padding-left manage-head-con ">用户管理</h6>
+			<h6 class=" padding-left manage-head-con "><b>用户管理</b></h6>
 		</div>
 		<div style="margin-left:20px">
 			<table class="table table-hover" style="border:none;outline:medium;width:1143px">
-				<tr>
-					<td></td>
+				<tr class="info" style="font-weight:bold;font-size:14px;color:; ">
+					
 					<td>职位ID</td>
 					<td>职位名称</td>
 					<td>创建时间</td>
 					<td>更新时间</td>
 					<td></td>
+					<td></td>
 				</tr>
 				{volist name="result" id="data"}
-				<tr>
-					<td></td>
+				<tr style="font-size:14px;color:; ">
 					<td>{$data.pid}</td>
 					<td>{$data.position}</td>
 					<td>{$data.create_time}</td>
