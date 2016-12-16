@@ -6,37 +6,10 @@
         <link type="text/css" rel="stylesheet" href="__STATIC__/css/frontmodule.css" /> 
         <link type="text/css" rel="stylesheet" href="__STATIC__/css/5_themes_default_select.css?v=0.0.0.9" front="css" /> 
         <link type="text/css" rel="stylesheet" href="__STATIC__/css/5_themes_default_style.css?v=0.0.0.9" front="css" /> 
-        <script type="text/javascript">
-            window.PERF_START = new Date;
-            function _splash(page, uid, tid, pid) {
-                uid = uid || 0;  // 这里是用户ID
-                tid = tid || 0;   // 这里是租户ID
-                pid = pid || 'unknown';  // 这里是项目标识
-                var now = new Date;
-                var start = window.PERF_START || now;
-                var diff = now - start;
-                var rand = Math.round(Math.random() * 1000000);
-                var url = document.location.protocol + '//opsapi.beisen.com/opsapi/AddLog?appName=' + pid + '&label=%5Bsplash%5D%20' + page + '&uid=' + uid + '&tid=' + tid + '&time=' + diff + '&type=1&sid=' + rand + '&step=0';
-                var img = new Image;
-                img.src = url;
-            }
-        </script> 
 <!--        <link href="__STATIC__/css/jiathis_share.css" rel="stylesheet" type="text/css" /> -->
         <script type="text/javascript" src="__STATIC__/js/5_themes_default_jquery191.js?v=0.0.0.9"></script> 
         <script type="text/javascript" src="__STATIC__/js/5_themes_default_custom.js?v=0.0.0.9"></script> 
         <script type="text/javascript" src="__STATIC__/js/5_themes_default_dialog.js?v=0.0.0.9"></script> 
-        <script type="text/javascript">var $bs_vars = {'st': 'http://stnew.beisen.com/', 'version': '2015.09.17.001', 'constSite': 'http://const.tms.beisen.com'};
-            function vstr(str) {
-                if (typeof ($bs_vars) == 'undefine')
-                    return str;
-                var result = str;
-                for (var v in $bs_vars) {
-                    var regex = new RegExp('\\$\\{' + v.toString() + '\\}|\\{' + v.toString() + '\\}', 'igm');
-                    result = result.replace(regex, $bs_vars[v]);
-                }
-                return result;
-            }
-            ;</script>
         <!--引用静态文件:requirejs--> 
         <script type="text/javascript" src="__STATIC__/js/require.js"></script> 
         <title>公司介绍</title> 
@@ -50,76 +23,41 @@
                 <!--module:login begin--> 
                 <div class="bs-module"> 
                     <div class="login-link "> 
-                        <div class="login-hearder"> 
-                            
-                        <!--   <ul class="header-unLogin" style=""> 
-                                <li><a class="loginlink" href="__SITE__/index/user/login"> <span>个人登录</span> </a></li> 
-                                <li><a class="loginlink" href="__SITE__/index/user/log"> <span>企业登录</span> </a></li> 
+                         <div class="login-hearder"> 
+       {if empty(session('user'))}
+       <ul class="header-unLogin" style=""> 
+        <li>
+        <a class="loginlink" href="__SITE__/index/user/login"> <span><b>个人登录</b></span> </a></li>
+         <li>
+        <a class="loginlink" href="__SITE__/index/user/log"> <span><b>企业登录</b></span> </a></li>
+        <li><a class="reglink" href="__SITE__/index/user/reg"><span><b>个人注册</b></span></a></li>
+         <li><a class="reglink" href="__SITE__/index/user/register"><span><b>企业注册</b></span></a></li>
+       </ul> 
+       {else}
+            {if session('user')["user_type"] == 1}
+       <ul class="header-login" style=""> 
+        <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！{:session('user')["email"]}</b></span></li> 
+        <li class="PortalIndex"><a href="__SITE__/index/user/profile"><span><b>个人中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/index/user/loginOut"><span><b>退出</b></span></a></li> 
+       </ul>
+           {/if}   
+            {if session('user')["user_type"] == 0}
+        <ul class="header-login" style=""> 
+        <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！{:session('user')["email"]}</b></span></li> 
+        <li class="PortalIndex"><a href="__SITE__/index/user/resumecom"><span><b>企业中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/index/user/logOut"><span><b>退出</b></span></a></li> 
+       </ul>
+          {/if}
+            {if session('user')["user_type"] == 2}
+        <ul class="header-login" style=""> 
+        <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！{:session('user')["email"]}</b></span></li> 
+        <li class="PortalIndex"><a href="__SITE__/index/user/guan"><span><b>管理中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/index/user/out"><span><b>退出</b></span></a></li> 
+       </ul>
+           {/if}
+        {/if}
+      </div> 
 
-                                <li><a class="reglink" href="__SITE__/index/user/reg"><span> 个人注册</span></a></li> 
-                                <li><a class="reglink" href="__SITE__/index/user/register"><span> 企业注册</span></a></li>
-                            </ul> 
-                            <ul class="header-login" style=""> 
-                                <li class="welcome"><span><span class="userName" style="float:none"></span>，欢迎您！</span></li> 
-                                <li class="PortalIndex"><a href="__SITE__/index/user/"><span>个人中心</span></a></li> 
-                                <li class="LogoutUrl"><a href="__STATIC__/index/User/LogOut"><span>退出</span></a></li> 
-                            </ul> 
-
-
-                            <ul class="header-login" style=""> 
-                                <li class="welcome"><span><span class="userName" style="float:none"></span>，欢迎您！</span></li> 
-                                <li class="PortalIndex"><a href="__STATIC__/member_apply.html"><span>个人中心</span></a></li> 
-                                <li class="LogoutUrl"><a href="__STATIC__//User/Account/LogOut"><span>退出</span></a></li> 
-                            </ul> 
-
-
-                            <ul class="header-login" style=""> 
-                                <li class="welcome"><span><span class="userName" style="float:none"></span>，欢迎您！</span></li> 
-                                <li class="PortalIndex"><a href="__STATIC__/member_apply.html"><span>个人中心</span></a></li> 
-                                <li class="LogoutUrl"><a href="__STATIC__//User/Account/LogOut"><span>退出</span></a></li> 
-                            </ul>
-
-                            <ul class="header-unLogin" style=""> 
-                                <li>
-                                <a class="loginlink" href="__SITE__/index/user/login"><span>个人登录</span> </a>
-                                </li> 
-
-                                <li><a class="loginlink" href="__SITE__/index/user/log"> <span>企业登录</span> </a></li> 
-
-                                <li><a class="reglink" href="__SITE__/index/user/reg"><span> 个人注册</span></a></li> 
-
-                                <li><a class="reglink" href="__SITE__/index/user/register"><span> 企业注册</span></a></li>
-                            </ul> 
-                            <ul class="header-login" style=""> 
-                                <li class="welcome"><span><span class="userName" style="float:none"></span>，欢迎您！</span></li> 
-                                <li class="PortalIndex"><a href="__SITE__/index/user/profile"><span>个人中心</span></a></li> 
-                                <li class="LogoutUrl"><a href="__SITE__/index/user/loginOut"><span>退出</span></a></li> 
-                            </ul> 
-                            <ul class="header-login" style=""> 
-                                <li class="welcome"><span><span class="userName" style="float:none"></span>，欢迎您！</span></li> 
-                                <li class="PortalIndex"><a href="__SITE__/index/user/resumecom"><span>企业中心</span></a></li> 
-                                <li class="LogoutUrl"><a href="__SITE__/index/user/logOut"><span>退出</span></a></li> 
-                            </ul> 
-                            <ul class="header-login" style=""> 
-                                <li class="welcome"><span><span class="userName" style="float:none"></span>，欢迎您！</span></li> 
-                                <li class="PortalIndex"><a href="__SITE__/index/user/guan"><span>管理中心</span></a></li> 
-                                <li class="LogoutUrl"><a href="__SITE__/index/user/out"><span>退出</span></a></li> 
-                            </ul> 
- -->
-                        </div> 
-                        <script type="text/javascript">
- $.post("ajax.php", {type:"1"}, function(data) {
-                var loginView = $(".login-hearder .header-login");
-                var unLoginView = $(".login-hearder .header-unLogin");
-                if (data.name != '') {
-                    loginView.find('.userName').text(data.name);
-                    loginView.show()
-                }
-                else {
-                    unLoginView.show()
-                }
-            }, "json")
-     </script> 
                     </div> 
                 </div> 
                 <!--module:login end-->
@@ -158,7 +96,7 @@
                             <div class="titlelinks"> 
                                 <ul> 
                                     <ul class="secondarymenu"> 
-                                        <li class="secondCurrent"><a target="_self" href="__STATIC__/about.html">公司介绍</a></li> 
+                                        <li class="secondCurrent"><a target="_self" href="#">公司介绍</a></li> 
                                     </ul> 
                                 </ul> 
                             </div> 
@@ -177,10 +115,10 @@
                                     招聘动态
                                 </div>
                             </div> 
-                            <a href="__STATIC__/news.html" class="morelinks">更多&gt;&gt;</a> 
+                            <a href="#" class="morelinks">更多&gt;&gt;</a> 
                             <div class="dongtailinks"> 
                                 <ul> 
-                                    <li><a href="__STATIC__/news_detail.html?110000085" title="51Talk最嗨实习岗来啦~快来一起嗨" target="_blank">51Talk最嗨实习岗来...</a></li> 
+                                    <li><a href="#" title="51Talk最嗨实习岗来啦~快来一起嗨" target="_blank">51Talk最嗨实习岗来...</a></li> 
                                 </ul> 
                             </div> 
                         </div> 

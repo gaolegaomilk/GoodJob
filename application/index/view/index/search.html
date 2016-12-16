@@ -21,17 +21,39 @@
     <!--module:login begin--> 
     <div class="bs-module"> 
      <div class="login-link "> 
-      <div class="login-hearder"> 
-
-       <ul class="header-login" style="display:none"> 
-        <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！</b></span></li> 
-        <li class="PortalIndex"><a href="__STATIC__/member_apply.html"><span><b>个人中心</b></span></a></li> 
-        <li class="LogoutUrl"><a href="__STATIC__//User/Account/LogOut"><span><b>退出</b></span></a></li> 
+       <div class="login-hearder"> 
+       {if empty(session('user'))}
+       <ul class="header-unLogin" style=""> 
+        <li>
+        <a class="loginlink" href="__SITE__/index/user/login"> <span><b>个人登录</b></span> </a></li>
+         <li>
+        <a class="loginlink" href="__SITE__/index/user/log"> <span><b>企业登录</b></span> </a></li>
+        <li><a class="reglink" href="__SITE__/index/user/reg"><span><b>个人注册</b></span></a></li>
+         <li><a class="reglink" href="__SITE__/index/user/register"><span><b>企业注册</b></span></a></li>
        </ul> 
-       <ul class="header-unLogin" style="display:block"> 
-        <li><a class="loginlink" href="__STATIC__/login.html"> <span><b>登录</b></span> </a></li> 
-        <li><a class="reglink" href="__STATIC__/reg.html"><span><b>注册</b></span></a></li> 
-       </ul> 
+       {else}
+            {if session('user')["user_type"] == 1}
+       <ul class="header-login" style=""> 
+        <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！{:session('user')["email"]}</b></span></li> 
+        <li class="PortalIndex"><a href="__SITE__/index/user/profile"><span><b>个人中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/index/user/loginOut"><span><b>退出</b></span></a></li> 
+       </ul>
+           {/if}   
+            {if session('user')["user_type"] == 0}
+        <ul class="header-login" style=""> 
+        <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！{:session('user')["email"]}</b></span></li> 
+        <li class="PortalIndex"><a href="__SITE__/index/user/resumecom"><span><b>企业中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/index/user/logOut"><span><b>退出</b></span></a></li> 
+       </ul>
+          {/if}
+            {if session('user')["user_type"] == 2}
+        <ul class="header-login" style=""> 
+        <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！{:session('user')["email"]}</b></span></li> 
+        <li class="PortalIndex"><a href="__SITE__/index/user/guan"><span><b>管理中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/index/user/out"><span><b>退出</b></span></a></li> 
+       </ul>
+           {/if}
+        {/if}
       </div> 
      </div> 
     </div> 
@@ -40,7 +62,7 @@
     <div class="bs-module"> 
      <div class="internalrecommend-default "> 
       <div class="internaldiv"> 
-      <!--  <a class="internal" href="__STATIC__/http://neitui.zhiye.com/51talk" target="_blank"><b>内部推荐专区</b></a>  -->
+    
       </div> 
      </div> 
     </div> 
@@ -69,7 +91,7 @@
     <div class="imageslider-default "> 
      <div class="flexslider"> 
       <ul class="slides"> 
-       <li> <img src="__STATIC__/images/104003_medias_2015923_201592317513947.jpg" /> </li> 
+       <li> <img src="__STATIC__/images/tt.jpg" style="height:245px;"/> </li> 
       </ul> 
      </div> 
      <script type="text/javascript">
@@ -124,7 +146,7 @@
          <input type="text" class="serchinput" maxlength="50" id="k" name="search" tabindex="6" /> 
          <input type="hidden" name="p" value="" id="jobAdClassHidden" /> 
         </div> 
-        <span class="serchbtn"><input type="submit" name="sub" value="搜索" style="width:60px;height:26px;background: #f90;margin-top:7px;margin-left: 0px;"></span> 
+        <span class="serchbtn"><input type="submit" name="sub" value="搜索" style="width:60px;height:26px;background: #f90;margin-top:7px;margin-left: 0px;color:#fff;"></span> 
        </div> 
       </form> 
       </div>  
@@ -143,30 +165,24 @@
         </div>
        </div> 
      <!--   <a href="" class="morelinks"> -->更多&gt;&gt;<!-- </a>  -->
-       <div class="dongtailinks"> 
-        <ul> 
-         <li><a href="__STATIC__/news_detail.html?110000085" title="51Talk最嗨实习岗来啦~快来一起嗨" target="_blank">51Talk最嗨实习岗来...</a></li> 
-        </ul> 
-       </div> 
       </div> 
      </div> 
      <!--module:newslist end--> 
     </div> 
    </div> 
-   <!--module:jobstab begin--> 
    <div class="bs-module"> 
     <div class="jobstab-default "> 
      <div class="zhiweiliebiao"> 
       <div class="listnav"> 
        <ul> 
-        <li><a id="hotjob">所索职位</a></li>
+        <li><a id="hotjob">所搜职位</a></li>
        </ul> 
        <a  class="listmorelinks">更多&gt;&gt;</a> 
       </div> 
       <div class="listlinks"> 
        <ul id="ulfirst"> 
         {foreach $data as $val}
-        <li><a href="__SITE__/index/index/details?id={$val['pid']}">{$val['position']}</a></li> 
+        <li style="list-style: none;"><span><img src="__STATIC__/images/point.png" alt="">&nbsp; </span><a href="__SITE__/index/index/details?id={$val['pid']}">{$val['position']}</a></li> 
         {/foreach}
        </ul> 
       </div> 

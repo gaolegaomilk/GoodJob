@@ -17,17 +17,10 @@ use app\index\Model\City;
 
 class Auth extends Controller
 {
-
-
 	//普通用户的用户注册
 	public function reg()
 	{
-		$find = Db::name('user')->where('uid',73)->find();
-		if($find['web'] == 0){
-			$this->error('亲 服务器正在维护当中','Index/index');
-		}else{
-			return $this->fetch();
-		}
+		return $this->fetch();
 	}
 	
 	//对注册普通用户名的验证
@@ -56,17 +49,17 @@ class Auth extends Controller
 	    $code=$_REQUEST['Code'];
 	    if (empty($username)) {
 	    	//echo '<script>alert("用户名不能为空");parent.location.href="http://www.goodjob.com/index/user/reg";</script>';
-	    	$this->error('用户名不能为空','http://www.goodjob.com/index/user/reg');
+	    	$this->error('用户名不能为空','user/reg');
 	    }
 
 	    if (empty($password)) {
 	     	// echo '<script>alert("密码不能为空");parent.location.href="http://www.goodjob.com/index/user/reg";</script>';
-	     	$this->error('密码不能为空','http://www.goodjob.com/index/user/reg');
+	     	$this->error('密码不能为空','user/reg');
 	    }
 
 	    if (($password != $repassword)) {
 	    	 //echo '<script>alert("两次输入的密码不一致");parent.location.href="http://www.goodjob.com/index/user/reg";</script>';
-	    	$this->error('两次输入的密码不一致','http://www.goodjob.com/index/user/reg');
+	    	$this->error('两次输入的密码不一致','user/reg');
 	    }
 		if(captcha_check($code)){
 		 	$user->data([
@@ -78,23 +71,18 @@ class Auth extends Controller
 
 			if ($result) {
 				//echo '<script>alert("注册成功");parent.location.href="http://www.goodjob.com/index/index";</script>';
-				$this->success('注册成功','http://www.goodjob.com/index/index');
+				$this->success('注册成功','user/login');
 			}		 	
 		} else {
 			//echo '<script>alert("注册失败");parent.location.href="http://www.goodjob.com/index/user/reg";</script>';
-				$this->error('注册失败','http://www.goodjob.com/index/user/reg');
+				$this->error('注册失败','user/reg');
 		}
 	} 
 
 	//对注册企业用户的判断
 	public function register()
 	{
-		$find = Db::name('user')->where('uid',73)->find();
-		if($find['web'] == 0){
-			$this->error('亲 服务器正在维护当中','Index/index');
-		}else{
-			return $this->fetch();
-		}
+		return $this->fetch();
 	}
 	public function authCompany()
 	{
@@ -109,47 +97,42 @@ class Auth extends Controller
 
 	public function doCompany()
 	{
-	
-			$company = new Company;
+		$company = new Company;
 
-			$username = $_REQUEST['email'];
-			$password= md5($_REQUEST['password']);
-			$repassword= md5($_REQUEST['repassword']);
-			$ip = $_SERVER['REMOTE_ADDR'];
-			$ip = ip2long($ip);
-		    $code=$_REQUEST['Code'];	    
-		    if (empty($username)) {
-		    	 //echo '<script>alert("用户名不能为空");parent.location.href="http://www.goodjob.com/index/user/reg";</script>';
-		    	$this->error('用户名不能为空','http://www.goodjob.com/index/user/register');
-		    }
+		$username = $_REQUEST['email'];
+		$password= md5($_REQUEST['password']);
+		$repassword= md5($_REQUEST['repassword']);
+		$ip = $_SERVER['REMOTE_ADDR'];
+		$ip = ip2long($ip);
+	    $code=$_REQUEST['Code'];	    
+	    if (empty($username)) {
+	    	 //echo '<script>alert("用户名不能为空");parent.location.href="http://www.goodjob.com/index/user/reg";</script>';
+	    	$this->error('用户名不能为空','user/register');
+	    }
 
-		    if (empty($password)) {
-		     	 //echo '<script>alert("密码不能为空");parent.location.href="http://www.goodjob.com/index/user/reg";</script>';
-		     	$this->error('密码不能为空','http://www.goodjob.com/index/user/register');
-		    }
+	    if (empty($password)) {
+	     	 //echo '<script>alert("密码不能为空");parent.location.href="http://www.goodjob.com/index/user/reg";</script>';
+	     	$this->error('密码不能为空','user/register');
+	    }
 
-		    if (($password != $repassword)) {
-		    	 // echo '<script>alert("两次输入的密码不一致");parent.location.href="http://www.goodjob.com/index/user/reg";</script>';
-		    	$this->error('两次输入的密码不一致','http://www.goodjob.com/index/user/register');
-		    }
-		  
-			if(captcha_check($code)){
-			 	$company->data([
-				"email"=> "$username",
-				"password" => "$password",
-				"ip" => "$ip"
-
-				]);
-				$result = $company->save();
-				 
-				if ($result) {
-					$this->success('注册成功','http://www.goodjob.com/index/index');
-				}		 	
-			} else {
-				 // echo '<script>alert("注册失败");parent.location.href="http://www.goodjob.com/index/user/reg";</script>';
-				$this->error('注册失败','http://www.goodjob.com/index/user/register');
-			}
-		
+	    if (($password != $repassword)) {
+	    	 // echo '<script>alert("两次输入的密码不一致");parent.location.href="http://www.goodjob.com/index/user/reg";</script>';
+	    	$this->error('两次输入的密码不一致','user/register');
+	    }
+	  
+		if(captcha_check($code)){
+		 	$company->data([
+			"email"=> "$username",
+			"password" => "$password",
+			"ip" => "$ip"
+			]);
+			$result = $company->save();
+			if ($result) {
+				$this->success('注册成功','index/index');
+			}		 	
+		} else {
+			$this->error('注册失败','user/register');
+		}
 	} 
 
 	//对个人用户的登录
@@ -159,46 +142,47 @@ class Auth extends Controller
 	}
 	public function doLogin()
 	{
-		// $find = Db::name('user')->where('uid',73)->find();
-		// if($find['web'] == 1 || Session::get('user')['user_type'] == 2){
+		
 		$email = $_POST['email'];
-		// dump($email);
 		$password = md5($_POST['password']);
 		$Code = $_POST['Code'];
-
 		$personinfo = Db::name('user')->where('email', $email)->select();
-		  // dump($personinfo[0]['uid']);die();
 		 if(empty($personinfo)){
-	 		echo '<script>alert("用户名不存在");parent.location.href="http://www.goodjob.com/index/user/login";</script>';
+	 		$this->error('用户名不存在', 'User/login');
 		 } else {
-			 	if ($_POST['email'] == $personinfo[0]['email']) {
+		 	$id = $personinfo[0]['uid'];
+			$name = Db::name('personinfo')->where('user_id',$id)->find()['realname'];
+		 	if ($_POST['email'] == $personinfo[0]['email']) {
 
-			 		if ($password == $personinfo[0]['password']) {
-			 			
-			 			Session('user', [
-			 				'email' => $_POST['email'],
-			 				'password' => $_POST['password'],
-			 				'uid' => $personinfo[0]['uid'],
-			 				'user_type' => $personinfo[0]['user_type']
-			 				] );
-			 				$find = Db::name('user')->where('uid',73)->find();
-							if($find['web'] == 1 || Session::get('user')['user_type'] == 2){
-								// dump(Session::get('user')['user_type']);
-								$this->success('登录成功', 'http://www.goodjob.com/index/index');
-							}else{
-								Session(null);
-								$this->error('亲 服务器正在维护当中','Index/index');
-							}
-			 		} else {
-			 			
-			 			$this->error('密码错误','http://www.goodjob.com/index/user/login');
-			 		}
-			 	} else {
+		 		if ($password == $personinfo[0]['password']) {
+		 			if (captcha_check($Code)) {
+
+		 				Session('user', [
+		 				'email' => $_POST['email'],
+		 				'password' => $_POST['password'],
+		 				'uid' => $personinfo[0]['uid'],
+		 				'user_type' => $personinfo[0]['user_type'],
+		 				'name' => $name
+		 				] );
+		 				$find = Db::name('user')->where('uid',73)->find();
+		 				if($find['web'] == 1 || Session::get('user')['user_type'] == 2){
+		 					$this->success('登陆成功', 'Index/index');
+		 				} else {
+		 					Session(null);
+		 					$this->error('亲 ， 服务器正在维护当中', 'Index/index' );
+		 				}
+		 			}else {
+		 				$this->error('请输入验证码','http://www.goodjob.com/index/user/login');
+		 			}	
+		 		} else {
+		 			
+		 			$this->error('密码错误','http://www.goodjob.com/index/user/login');
+		 		}
+		 	} else {
 		 		
 		 		$this->error('用户名不存在','http://www.goodjob.com/index/user/login');
 		 	}
 		}
-	
 	}
 
 	//企业用户的登录
@@ -211,17 +195,18 @@ class Auth extends Controller
 	{	
 		$find = Db::name('user')->where('uid',73)->find();
 		if($find['web'] == 0 && Session::get('user')['user_type'] != 2){
-			$this->error('亲 服务器正在维护当中','Index/index');
-		}else{
+			$this->error('亲 服务器正在维护当中', 'Index/index');
+		} else {
 			$email = $_POST['email'];
 			$password = md5($_POST['password']);
 			$Code = $_POST['Code'];
 
 			//对企业用户的判断用户名是否是唯一的
 			$personinfo = Db::name('company')->where('email',$email)->select();
+
 			 if(empty($personinfo)){
 		 		
-		 		$this->success('用户名不存在','http://www.goodjob.com/index/user/login');
+		 		$this->success('用户名不存在','User/log');
 			 } else {
 			 	if ($_POST['email'] == $personinfo[0]['email']) {
 			 		
@@ -232,24 +217,22 @@ class Auth extends Controller
 			 				'uid' => $personinfo[0]['qid'],
 			 				'user_type' => $personinfo[0]['user_type']
 			 				] );
-			 				$find = Db::name('user')->where('uid',73)->find();
-							if($find['web'] == 1 || Session::get('user')['user_type'] == 2){
-								// dump(Session::get('user')['user_type']);
-								// 
-								// 
-								dump(session('uid'));die;
-								$this->success('登录成功', 'http://www.goodjob.com/index/index');
-							}else{
-								Session(null);
-								$this->error('亲 服务器正在维护当中','Index/index');
-							}
+
+			 			$find = Db::name('user')->where('uid', 73)->find();
+			 			if ($find['web'] == 1 || Session::get('user')['user_type'] == 2) {
+			 				$this->success('登录成功' , 'Index/index');
+			 			} else {
+			 				Sessio(null);
+			 				$this->error('亲 服务器正在维护当中', 'Index/index');
+			 			}
+			 			//企业用户登录成功跳转首页
 			 		} else {
 			 		
-			 			$this->success('密码错误', 'http://www.goodjob.com/index/user/login');
+			 			$this->success('密码错误', 'user/log');
 			 		}
 			 	} else {
 			 		
-			 		$this->success('用户名不存在','http://www.goodjob.com/index/user/login');
+			 		$this->success('用户名不存在','user/log');
 			 	}
 			}
 		}
@@ -422,6 +405,7 @@ class Auth extends Controller
 	{
 		$uid = Session::get('user')['uid'];
 		$resumecom = Db::name('Business')->where('uid',$uid)->find();
+		// dump($resumecom['picture']);
 		// dump($resumecom);die();
 		if($resumecom){
 			$vocation = Db::name('vocation')->select();
@@ -434,7 +418,6 @@ class Auth extends Controller
 		}else{
 			$this->error('您还没有填写简历','http://www.goodjob.com/index/user/info');
 		}
-		
 	}
 	//修改企业信息
 	public function upcompany()
@@ -480,10 +463,11 @@ class Auth extends Controller
 			
 			if ($updateCompany)	{
 				
-				echo '<script>alert("修改成功");parent.location.href="http://www.goodjob.com/index/user/resumecom";</script>';
+				// echo '<script>alert("修改成功");parent.location.href="http://www.goodjob.com/index/user/resumecom";</script>';
+				$this->success('修改完成', 'index/user/resumecom');
 			}	
 		} else {
-			$this->success('请先填写企业资料','http://www.goodjob.com/index/user/info');
+			$this->error('请先填写企业资料','http://www.goodjob.com/index/user/info');
 		}
 	}
 
@@ -526,9 +510,9 @@ class Auth extends Controller
 
 		$result = $post->save();
 		if ($result) {
-			$this->redirect('Index/User/gui');
+			$this->success('发布成功','http://www.goodjob.com/index/user/gui');
 		} else {
-			$this->redirect('Index/user/posinfo');
+			$this->error('发布失败','http://www.goodjob.com/index/user/posinfo');
 		}
 	}
 	//个人简历
@@ -587,12 +571,15 @@ class Auth extends Controller
 			$person->person_num = $_POST['person_num'];
 			$person->ed_ground = $_POST['ed_ground'];
 			$person->experience = $_POST['experience'];
+			$person->age = $_POST['age'];
 			//保存
 			$result = $person->save();
 			if ($result) {
-				$this->redirect('index/user/profile');
+				// $this->redirect('index/user/profile');
+				$this->success('填写成功','index/user/picture');
 			} else {
-				$this->redirect('index/user/resume');
+				// $this->redirect('index/user/resume');
+				$this->error('填写失败','index/user/profile');
 			}
 		}		
 	}
@@ -615,6 +602,8 @@ class Auth extends Controller
 		$person->person_num = $_POST['person_num'];
 		$person->ed_ground = $_POST['ed_ground'];
 		$person->experience = $_POST['experience'];
+		$person->age = $_POST['age'];
+
 		//首先查出是否填写过，只有填写过，才能先修改
 		$update= Db::name('personinfo')->where('user_id',$uid)->select();
 		if ($update) {
@@ -629,13 +618,16 @@ class Auth extends Controller
 			'language'=> $language = $_POST['language'],
 			'person_num'=> $person_num = $_POST['person_num'],
 			'ed_ground' => $ed_ground = $_POST['ed_ground'],
-			'experience' => $experience = $_POST['experience']
+			'experience' => $experience = $_POST['experience'],
+			'age' => $age = $_POST['age']
 			],['user_id' => $uid]);
 
 			if ($updateResume) {
-				echo '<script>alert("修改成功");parent.location.href="http://www.goodjob.com/index/user/profile";</script>';
+				// echo '<script>alert("修改成功");parent.location.href="http://www.goodjob.com/index/user/profile";</script>';
+				$this->success('修改成功', 'index/user/find');
 			} else {
-				echo '<script>alert("修改失败");parent.location.href="http://www.goodjob.com/index/user/resume";</script>';
+				// echo '<script>alert("修改失败");parent.location.href="http://www.goodjob.com/index/user/resume";</script>';
+				$this->error('修改失败','index/user/resume');
 			}
 	    } else {
 	    		echo '<script>alert("请先填写简历");parent.location.href="http://www.goodjob.com/index/user/resume";</script>';
@@ -655,7 +647,7 @@ class Auth extends Controller
     	$user = new Company();
     	$uid = Session::get('user')['uid'];
     	$password1 = Db::name('company')->where('qid',$uid)->find();
-    	// dump($password1);die();
+    	// dump($password1);
     	$password2 = md5($_POST['password']);
     	$pwd = md5($_POST['repassword']);
 
@@ -688,13 +680,19 @@ class Auth extends Controller
      */
     public function coume ()
     {
+    	$id = Session::get('user')['uid'];
+
     	$business = Db::name('business')->select();
+    	$company = Db::name('company')->select();
     	$personinfo = Db::name('personinfo')->select();
+    	
     	if (empty($personinfo)) {
     		echo '<script>alert("暂时没有简历");parent.location.href="http://www.goodjob.com/index/user/gui";</script>';
     	} else {
 	    	$this->assign('business', $business);
 	    	$this->assign('personinfo', $personinfo);
+	    	$this->assign('company',$company);
+	    	$this->assign('id', $id);
     	}
     	
     	return $this->fetch();
@@ -749,9 +747,9 @@ class Auth extends Controller
 			$result = $per->save([
 			'picture' => "$path"
 			],['user_id' => $uid]);
-			$this->success('上传成功','index/index');
+			$this->success('上传成功','index/user/find');
 		}else{
-			$this->error('上传失败','index/index');
+			$this->error('上传失败','index/user/picture');
 	    }   
     }
 
@@ -767,7 +765,7 @@ class Auth extends Controller
     {
     	$uid = Session::get('user')['uid'];
     	$bus = new Business();
-	
+
 		$file = request()->file('image');
 		// 移动到框架应用根目录/public/uploads/ 目录下
 		$info = $file->move(ROOT_PATH . 'public' . DS . 'uploads');
@@ -777,12 +775,53 @@ class Auth extends Controller
 			$result = $bus->save([
 			'picture' => "$path"
 			],['uid' => $uid]);
-			$this->success('上传成功','index/index');
+			$this->success('上传成功','index/user/resumecom');
 		}else{
-			$this->error('上传失败','index/index');
+			$this->error('上传失败','index/user/gui');
 	    }   
     }
 
+    /**
+     * 对企业发表的职位进行遍历
+     */
+    public function position()
+    {
+    	$uid = Session::get('user')['uid'];
+    	$position = Db::name('position')->where('uid',$uid)->paginate(10);
+    	
+    	// dump($position);
+    	// dump($uid);die();
+    	if (empty($position)) {
+    		$this->success('暂时没有发表职位');
+    	} else {
+    		$this->assign('position', $position);
+    	}
+    	return $this->fetch();
+    }
+
+      /**
+     * 企业发布的职位详情的查看
+     */
+      public function request()
+      {
+      	$city = Db::name('city')->select();
+      	$vocation = Db::name('vocation')->select();
+      	$Position = Db::name('position')->select();
+      	$category = Db::name('category')->select();
+      	$this->assign('Position',$Position);
+      	$this->assign('city', $city);
+      	$this->assign('category', $category);
+      	$this->assign('vocation', $vocation);
+      	return $this->fetch();
+      }
+
+      /**
+       * 	对找回密码的设置
+       */
+      public function hui()
+      {
+      	return $this->fetch();
+      }
 
 
 }

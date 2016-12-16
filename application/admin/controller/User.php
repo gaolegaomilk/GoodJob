@@ -147,7 +147,7 @@ class User extends Auth
 		if($cinfo){
 			return view('',compact('cinfo','str','voca'));
 		}else{
-			return $this->error('该用户还没有填写简历');
+			return $this->error('该用户还没有填写企业信息');
 		}
 		
 	}
@@ -163,7 +163,7 @@ class User extends Auth
 
 		$result = Company::destroy($qid);
 		if($result){
-			$this->success('删除成功','__ADMIN__SITE__/admin/index/userInfo');
+			$this->success('删除成功','__ADMIN__SITE__/admin/index/identify');
 		}else{
 			$this->error('删除失败');
 		}

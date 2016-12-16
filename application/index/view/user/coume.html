@@ -4,29 +4,6 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
   <meta http-equiv="X-UA-Compatible" content="IE=edge" /> 
   <title>我的简历</title> 
-  <script type="text/javascript">
-        try {
-            top.location.hostname;
-            if (top.location.hostname != window.location.hostname) {
-                top.location.href = window.location.href;
-            }
-        }
-        catch (e) {
-            top.location.href = window.location.href;
-        }
-    </script> 
-  <!--通用样式Css和脚本--> 
-  <script type="text/javascript">var $bs_vars={'st':'http://stnew.beisen.com/','version':'2015.09.17.001','constSite':'http://const.tms.beisen.com'};function vstr(str) {
-         if (typeof ($bs_vars) == 'undefine')
-             return str;
-         var result = str;
-         for (var v in $bs_vars) {
-             var regex = new RegExp('\\$\\{' + v.toString() + '\\}|\\{' + v.toString() + '\\}', 'igm');
-             result = result.replace(regex, $bs_vars[v]);
-         }
-         return result;
-     };</script> 
-  <!--引用静态文件:requirejs--> 
   <script type="text/javascript" src="__STATIC__/js/require.js"></script> 
   <!--引用静态文件:skin_default--> 
   <link href="__STAFcss/common.css" rel="stylesheet" type="text/css" />
@@ -48,21 +25,6 @@
   <script type="text/javascript" src="__STATIC__/js/dialog_js.js"></script> 
   <!--产品头部CSS和脚本--> 
   <script src="__STATIC__/js/WdatePicker.js"></script> 
-  <script type="text/javascript">
-       window.PERF_START=new Date;
-       function _splash(page, uid, tid, pid){
-        uid =  uid || 0;  // 这里是用户ID
-        tid =  tid || 0;   // 这里是租户ID
-        pid =  pid || 'unknown';  // 这里是项目标识
-        var now = new Date;
-        var start = window.PERF_START || now;
-        var diff = now - start;
-        var rand = Math.round(Math.random()*1000000);
-        var url= document.location.protocol+'//opsapi.beisen.com/opsapi/AddLog?appName='+pid+'&label=%5Bsplash%5D%20'+page+'&uid='+uid+'&tid='+tid+'&time='+diff+'&type=1&sid='+rand+'&step=0';
-        var img = new Image;
-        img.src = url;
-    }
-    </script> 
   <!--引用静态文件:front_css--> 
   <link href="__STATIC__/css/front.css" rel="stylesheet" type="text/css" />  
   <style type="text/css">
@@ -74,139 +36,9 @@
               height: 40px!important;
               margin: 16px 0 0 30px!important;
             }
+          body{background-image:url(__STATIC__/images/dd.jpg);}
     </style> 
-    <script type="text/javascript">
- $.post("ajax.php", {type:"1"}, function(data) {
-                var loginView = $(".login-hearder .header-login");
-                var unLoginView = $(".login-hearder .header-unLogin");
-                if (data.name != '') {
-                    loginView.find('.userName').text(data.name);
-                    loginView.show()
-                }
-                else {
-                    unLoginView.show()
-                }
-            }, "json")
-     </script>
-  <script type="text/javascript" id="user-info-header">
-
-
-
-        $(document).ready(function () {
-            var isApplyDetail = "False".toLowerCase() == 'true' ? true : false;
-            //先获取用户的基本信息，这里的ajax是同步等待
-            if (!isApplyDetail) {
-                var userInfo = window.userInfo;
-                var detailView = $(".dl_rightit .isApplyDetail");
-                var loginView = $(".dl_rightit .isLogin");
-                var unLoginView = $(".dl_rightit .unLogin");
-                detailView.show();
-                //头部对外公开的口，可以修改用户名
-                window.loginHeaderView = {
-                    userNameText: function (text) {
-                        var shortText = text && text.length > 20 ? text.substring(0, 20) : text;
-                        loginView.find('.userShortName').text(shortText);
-                        loginView.find('#topUserEmail').attr('title', text);
-                    }
-                };
-                if (userInfo.isLogin) {
-                    loginView.show();
-                    loginView.find('.userShortName').text(userInfo.shortName);
-                    loginView.find('#topUserEmail').attr('title', userInfo.name);
-                }
-                else {
-                    unLoginView.show();
-                }
-            }
-        })
-
-        var UserPrompt = function (options) {
-            this.paramMap = {
-                targetSelector: 'targetSelector'
-                , promptText: 'promptText'
-            }
-            this.floater = {
-                tag: options[this.paramMap.targetSelector]
-                , position: {}
-                , size: {}
-            };
-            this.promptText = '您尚未设置密码，请点这里修改吧！';//options[this.paramMap.promptText] || '';
-            this.ui = {
-                close: ".user-prompt-closeBtn"
-            };
-            this.initialize();
-        };
-        UserPrompt.prototype = {
-            initialize: function () {
-                var self = this;
-                if ($(self.floater.tag).length < 1) return;
-
-                self.getFloater();
-                self.makeView();
-                self.attachCss()
-                self.aliveUi();
-                self.bindEvents();
-            }
-            , render: function () {
-                var self = this;
-                self.$el.appendTo($('body'));
-            }
-            , show: function () {
-                var self = this;
-                if ($(self.floater.tag).length < 1) return;
-                //控制所有子页面的show，如果用户第一次登陆才可以show
-                //这里没有在子页面去判断是否show是因为单价太高，一共有3个子页面，不好维护
-                if (window.userInfo.firstLogin) self.render();
-            }
-            , hide: function () {
-                var self = this;
-                $el.remove();
-            }
-            , getFloater: function () {
-                var self = this;
-                self.floater.tag = $(self.floater.tag) || $('body');
-                self.floater.position = self.floater.tag.position();
-                self.floater.size = {
-                    'height': self.floater.tag.height()
-                    , 'width': self.floater.tag.width()
-                }
-            }
-            , makeView: function () {
-                var self = this;
-                self.$el = $("<div class='user-prompt-user-firstIn'>" +
-                                 "<div class='user-prompt-action-container'>" +
-                                    "<span class='user-prompt-closeBtn' title='close'></span>" +
-                                 "</div>" +
-                                 "<div class='user-prompt-content'>" + self.promptText + "</div>" +
-                             "</div>");
-            }
-            , attachCss: function () {
-                var self = this;
-                //这里的0.9和4是写死的数，为了调整位置
-                self.$el.css({
-                    'top': (self.floater.position.top + self.floater.size.height) + 'px' // + 15
-                    , 'left': (self.floater.position.left - self.floater.size.width / 4) + 'px'//+ self.floater.size.width / 2
-                });
-            }
-            , aliveUi: function () {
-                var self = this;
-                var aliveUi = {};
-                $.each(self.ui, function (key, value) {
-                    aliveUi[key] = self.$el.find(value) || null;
-                });
-                self.ui = aliveUi;
-            }
-            , bindEvents: function () {
-                var self = this;
-                self.ui.close.bind('click', function () {
-                    self.$el.remove()
-                })
-            }
-        };
-    </script> 
-
   <link rel="stylesheet" href="__STATIC__/admin/css/bootstrap.css" />
-
  </head> 
  <body> 
   <div class="bs_deliver"> 
@@ -241,17 +73,6 @@
     <!--申请职位 e--> 
     <!--我的简历 s--> 
     <!--简历内容 s--> 
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-
-            var promptview = new UserPrompt({
-                targetSelector: 'a.accountsettings'
-                , promptText: '在账户设置中，可以改用户名和密码啦！'
-            });
-            promptview.show();
-        })
-    </script> 
     <div class="dl_bigwrap dl_heightagain clearfix dl_grey_bc"> 
      <div class="leftmenu" style="width:180px"> 
       <div class="dl_greyline_bg"> 
@@ -260,9 +81,13 @@
         <ul class="dl_menulist clearfix"> 
         <ul class="dl_menulist clearfix"> 
         <li> <a href="__SITE__/index/user/gui" class="apply">填写规则</a> </li> 
-        <li> <a href="__SITE__/index/user/info" class="apply">填写企业信息</a> </li> 
-        <li> <a href="__SITE__/index/user/upcompany" class="apply">修改企业信息</a> </li> 
-        <li> <a href="__SITE__/index/user/resumecom" class="apply">企业详情</a> </li>
+        <li> <a href="__SITE__/index/user/info" class="shoucang">填写企业资料</a></li> 
+       <li> <a href="__SITE__/index/user/upcompany" class="shoucang">修改企业资料</a> </li>
+       <li> <a href="__SITE__/index/user/password" class="shoucang">修改密码</a></li>
+       <li> <a href="__SITE__/index/user/custome" class="shoucang">修改图像</a></li>
+       <li> <a href="__SITE__/index/user/posinfo" class="shoucang">发布招聘信息</a></li>
+       <li> <a href="__SITE__/index/user/resumecom" class="shoucang">查看企业资料</a></li>
+       <li> <a href="__SITE__/index/index" class="shoucang">返回首页</a> </li>
         </ul> 
       </ul> 
      </div> 
@@ -297,8 +122,7 @@
              <div class="clear"></div> 
             </div> 
             <div class="form_part"> 
-             <div class="form_part_container columnone"> 
-              
+             <div class="form_part_container columnone">  
              </div> 
              <div class="clear"></div> 
             </div> 
@@ -312,22 +136,22 @@
               <ul> 
                 {foreach $personinfo as $person}
                   {foreach $business as $bus}
-                    {if $person['user_id'] == $bus['user_id']}
-               <li style="background:;height:30px;width:600px;line-height: 36px;font-size: 14px;border:1px solid #ccc;">
-                <label style="margin-left: 10px;line-height: 36px;">姓名：</label> 
-                <span class="preview_text" style="width:200px;margin-left: 20px;">{$person['realname']}</span>
-                <span class="preview_text" style="width:200px;margin-left: 20px;"><a href="__SITE__/index/user/qualication?id={$person['user_id']}" style="text-decoration: none">简历详情</a></span>
-               </li> 
-
-               
+                  
+                    {if $person['user_id'] == $bus['user_id'] }
+                   <li style="background:;height:30px;width:600px;line-height: 36px;font-size: 14px;border-bottom:2px dashed #ccc;">
+                    <label style="margin-left: 10px;line-height: 20px;">姓名：</label> 
+                    <span class="preview_text" style="width:200px;margin-left: 20px;line-height: 25px;">{$person['realname']}</span>
+                    <span class="preview_text" style="width:200px;margin-left: 20px; line-height: 25px;"><a href="__SITE__/index/user/qualication?id={$person['user_id']}" style="text-decoration: none">简历详情</a></span>
+                   </li> 
                     {/if}
+                   
                   {/foreach}
                {/foreach}
               </ul> 
              </div> 
              <div class="clear"></div> 
             </div> 
-           </div> 
+           </div>
           </div> 
           <div class="dl_myrightfile"> 
            <img id="idPhoto" style="width: 120px; height: 140px; padding-top: 10px; display: none;" src="__STATIC__/images/upfile.jpg" /> 
@@ -385,7 +209,7 @@
            </div> 
           </div> 
          </div> 
-         <div class="dl_borderdashed"></div> 
+         <div class="dl_borderdashed" style="border-bottom:none;"></div> 
         </form> 
        </div> 
        <input type="hidden" class="viewName" value="201307040448456801" /> 

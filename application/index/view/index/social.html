@@ -32,24 +32,24 @@
         {else}
             {if session('user')["user_type"] == 1}
         <ul class="header-login" style=""> 
-        <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！<b></span></li> 
-        <li class="PortalIndex"><a href="__SITE__/Index/user/profile"><span>个人中心</span></a></li> 
-        <li class="LogoutUrl"><a href="__SITE__/Index/user/loginOut"><span>退出</span></a></li> 
+        <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！{:session('user')["email"]}<b></span></li> 
+        <li class="PortalIndex"><a href="__SITE__/Index/user/profile"><span><b>个人中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/Index/user/loginOut"><span><b>退出</b></span></a></li> 
        </ul>
          {/if}   
             {if session('user')["user_type"] == 0}
         <ul class="header-login" style=""> 
-        <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！</b></span></li> 
-        <li class="PortalIndex"><a href="__SITE__/Index/user/login"><span>企业中心</span></a></li> 
-        <li class="LogoutUrl"><a href="__SITE__/Index/user/login"><span>退出</span></a></li> 
+        <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！{:session('user')["email"]}</b></span></li> 
+        <li class="PortalIndex"><a href="__SITE__/Index/user/gui"><span><b>企业中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/Index/user/LogOut"><span><b>退出</b></span></a></li> 
        </ul>
            {/if}
 
             {if session('user')["user_type"] == 2}
         <ul class="header-login" style=""> 
-        <li class="welcome"><span><span class="userName" style="float:none"></span>，欢迎您！</span></li> 
-        <li class="PortalIndex"><a href="__SITE__/Index/user/guan"><span>管理中心</span></a></li> 
-        <li class="LogoutUrl"><a href="__SITE__/Index/user/out"><span>退出</span></a></li> 
+        <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！{:session('user')["email"]}</b></span></li> 
+        <li class="PortalIndex"><a href="__SITE__/Index/user/guan"><span><b>管理中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/Index/user/out"><span><b>退出</b></span></a></li> 
        </ul>
            {/if}
       {/if} 
@@ -85,7 +85,8 @@
   </div> 
   <div class="pictureplace"> 
    <div class="pictureplacecenter"> 
-    <img src="__STATIC__/images/commonbanner.jpg?v=634507909669730000" /> 
+   <!--  <img src="__STATIC__/images/commonbanner.jpg?v=634507909669730000" />  -->
+    <img src="__STATIC__/images/pin.jpg" style="height:245px;">
    </div> 
   </div> 
   <div class="contain joblist clearfix"> 
@@ -103,8 +104,8 @@
        </div> 
        <div class="fenleilist"> 
         <ul class="firstlist clearfix"> 
-         <li><a href="__STATIC__/social.html?p=3^2#jlt" constval="2" title="北京">北京</a></li> 
-         <li><a href="__STATIC__/social.html?p=3^1#jlt" constval="1" title="上海">上海</a></li> 
+         <li><a href="#">北京</a></li> 
+         <li><a href="#">上海</a></li> 
         </ul> 
        </div> 
       </div> 
@@ -122,7 +123,7 @@
          招聘动态
         </div>
        </div> 
-       <a href="__STATIC__/news.html" class="morelinks">更多&gt;&gt;</a> 
+       <a href="#" class="morelinks">更多&gt;&gt;</a> 
        <div class="dongtailinks"> 
         <ul> 
          <span>暂无内容</span> 
@@ -174,7 +175,7 @@
          <input type="text" class="serchinput" maxlength="50" id="k" name="search" tabindex="6" /> 
          <input type="hidden" name="p" value="" id="jobAdClassHidden" />  
         </div> 
-        <span class="serchbtn"><input type="submit" name="sub" value="搜索" style="width:60px;height:26px;background: #f90;margin-top:7px;margin-left: 0px;"></span> 
+        <span class="serchbtn"><input type="submit" name="sub" value="搜索" style="width:60px;height:26px;background: #f90;color:#fff;margin-top:7px;margin-left: 0px;"></span> 
        </div> 
       </form> 
      </div> 
@@ -183,14 +184,14 @@
     <!--module:positionlist begin--> 
     <div class="bs-module"> 
      <div class="positionlist-newtemplate "> 
-      <div class="clearfix tablecontain"> 
-       <table class="listtable"> 
+      <div class="clearfix tablecontain" style="px;" > 
+       <table class="listtable" > 
         <thead> 
          <tr class="tabletitle"> 
           <th class="tableleft">&nbsp;&nbsp;公司名称</th> 
           <th class="tableleft" title="招聘区域">职位名称</th> 
-          <th class="tableleft">工作地点</th> 
-          <th class="tableleft">发布时间</th> 
+          <th class="tableleft" style="">工作地点</th> 
+          <th class="tableleft" style="position:absolute;right:280px;background: #eff0f4;">发布时间</th> 
          </tr> 
         </thead> 
         <tbody>

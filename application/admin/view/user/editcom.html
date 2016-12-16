@@ -37,6 +37,19 @@
              </ul> 
             </div> 
            </div> 
+           {if empty($cinfo['picture'])}
+           <div style="width:120px;height:180px;position:absolute;top:128px;left:476px;">
+            
+              <img src="__STATIC__/images/upfile.jpg" style="width:120px;height:120px;border-radius:50px" alt="">
+              <span style="display:inline-block;margin-top:20px;margin-left:14px">该用户还没有头像</span>
+              </div>
+            {else}
+            <div style="width:120px;height:180px;position:absolute;top:128px;left:476px;">
+              <img src="__INDEX__/uploads/{$cinfo['picture']}" style="width:120px;height:120px;border-radius:50px" alt="">
+            <span style="display:inline-block;margin-top:20px;margin-left:33px">该用户头像</span>
+
+         </div>
+         {/if}
           </div> 
          </div> 
         </div> 

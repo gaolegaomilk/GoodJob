@@ -40,23 +40,23 @@
         {else}
             {if session('user')["user_type"] == 1}
        <ul class="header-login" style=""> 
-        <li class="welcome"><span><span class="userName" style="float:none"></span>，欢迎您！</span></li> 
-        <li class="PortalIndex"><a href="__SITE__/index/user/profile"><span>个人中心</span></a></li> 
-        <li class="LogoutUrl"><a href="__SITE__/index/user/loginOut"><span>退出</span></a></li> 
+        <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！{:session('user')["email"]}</b></span></li> 
+        <li class="PortalIndex"><a href="__SITE__/index/user/profile"><span><b>个人中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/index/user/loginOut"><span><b>退出</b></span></a></li> 
        </ul> 
             {/if}   
             {if session('user')["user_type"] == 0}
        <ul class="header-login" style=""> 
-        <li class="welcome"><span><span class="userName" style="float:none"></span>，欢迎您！</span></li> 
-        <li class="PortalIndex"><a href="__SITE__/index/user/resumecom"><span>企业中心</span></a></li> 
-        <li class="LogoutUrl"><a href="__SITE__/index/user/logOut"><span>退出</span></a></li> 
+        <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！{:session('user')["email"]}</b></span></li> 
+        <li class="PortalIndex"><a href="__SITE__/index/user/gui"><span><b>企业中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/index/user/logOut"><span><b>退出</b></span></a></li> 
        </ul> 
             {/if}
             {if session('user')["user_type"] == 2}
        <ul class="header-login" style=""> 
-        <li class="welcome"><span><span class="userName" style="float:none"></span>，欢迎您！</span></li> 
-        <li class="PortalIndex"><a href="__SITE__/index/user/guan"><span>管理中心</span></a></li> 
-        <li class="LogoutUrl"><a href="__SITE__/index/user/out"><span>退出</span></a></li> 
+        <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！{:session('user')["email"]}</b></span></li> 
+        <li class="PortalIndex"><a href="__SITE__/index/user/guan"><span><b>管理中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/index/user/out"><span><b>退出</b></span></a></li> 
        </ul> 
             {/if}
         {/if}
@@ -110,8 +110,8 @@
        </div> 
        <div class="fenleilist"> 
         <ul class="firstlist clearfix"> 
-         <li><a href="__STATIC__/jobs.html?p=1^20#jlt" constval="20" title="北京">北京</a></li> 
-         <li><a href="__STATIC__/jobs.html?p=1^9#jlt" constval="9" title="上海">上海</a></li> 
+         <li><a href="#">北京</a></li> 
+         <li><a href="#">上海</a></li> 
         </ul> 
        </div> 
       </div> 
@@ -129,10 +129,10 @@
          招聘动态
         </div>
        </div> 
-       <a href="__STATIC__/news.html" class="morelinks">更多&gt;&gt;</a> 
+       <a href="#" class="morelinks">更多&gt;&gt;</a> 
        <div class="dongtailinks"> 
         <ul> 
-         <li><a href="__STATIC__/news_detail.html?110000085" title="51Talk最嗨实习岗来啦~快来一起嗨" target="_blank">51Talk最嗨实习岗来...</a></li> 
+         <li><a href="#" title="51Talk最嗨实习岗来啦~快来一起嗨" target="_blank">51Talk最嗨实习岗来...</a></li> 
         </ul> 
        </div> 
       </div> 
@@ -183,7 +183,7 @@
          <input type="text" class="serchinput" maxlength="50" id="k" name="search" tabindex="6" /> 
          <input type="hidden" name="p" value="" id="jobAdClassHidden" />  
         </div> 
-        <span class="serchbtn"><input type="submit" name="sub" value="搜索" style="width:60px;height:26px;background: #f90;margin-top:7px;margin-left: 0px;"></span> 
+        <span class="serchbtn"><input type="submit" name="sub" value="搜索" style="width:60px;height:26px;background: #f90;margin-top:7px;color:#fff;margin-left: 0px;"></span> 
        </div> 
       </form> 
       </div> 
@@ -193,14 +193,14 @@
     <!--module:positionlist begin--> 
     <div class="bs-module"> 
      <div class="positionlist-newtemplate "> 
-      <div class="clearfix tablecontain"> 
+      <div class="clearfix tablecontain" style="height:px;"> 
        <table class="listtable"> 
         <thead> 
          <tr class="tabletitle"> 
           <th class="tableleft">&nbsp;&nbsp;公司名称</th> 
           <th class="tableleft" title="职位类型">职位名称</th> 
           <th class="tableleft">工作地点</th> 
-          <th class="tableleft">发布时间</th> 
+          <th class="tableleft" style="position: absolute;right:280px;">发布时间</th> 
          </tr> 
         </thead> 
         <tbody>
@@ -222,104 +222,9 @@
               {/foreach}
              {/if} 
          {/foreach}
-         
-        <!--  <tr> 
-          <td class="tableleft joblsttitle"> <a title="学术总监" jobadid="620025249" href="__STATIC__/detail.html?620025249"> 学术总监 </a> </td> 
-          <td class="tableleft joblsttitle" title="学术部">学术部</td> 
-          <td title="北京市" class="tableleft joblsttitle"> 北京市 </td> 
-          <td class="tableleft joblsttitle"> 2015-11-24 </td> 
-         </tr> 
-         <tr> 
-          <td class="tableleft joblsttitle"> <a title="PTD 助教总监" jobadid="620025245" href="__STATIC__/detail.html?620025245"> PTD 助教总监 </a> </td> 
-          <td class="tableleft joblsttitle" title="业务服务部">业务服务部</td> 
-          <td title="北京市" class="tableleft joblsttitle"> 北京市 </td> 
-          <td class="tableleft joblsttitle"> 2015-11-24 </td> 
-         </tr> 
-         <tr> 
-          <td class="tableleft joblsttitle"> <a title="CRD 客服总监" jobadid="620025239" href="__STATIC__/detail.html?620025239"> CRD 客服总监 </a> </td> 
-          <td class="tableleft joblsttitle" title="业务服务部">业务服务部</td> 
-          <td title="" class="tableleft joblsttitle"> </td> 
-          <td class="tableleft joblsttitle"> 2015-11-24 </td> 
-         </tr> 
-         <tr> 
-          <td class="tableleft joblsttitle"> <a title="高级招聘专员" jobadid="620023617" href="__STATIC__/detail.html?620023617"> 高级招聘专员 </a> </td> 
-          <td class="tableleft joblsttitle" title=""></td> 
-          <td title="北京市-海淀区" class="tableleft joblsttitle"> 北京市-海淀区 </td> 
-          <td class="tableleft joblsttitle"> 2015-11-03 </td> 
-         </tr> 
-         <tr> 
-          <td class="tableleft joblsttitle"> <a title="高级销售培训师" jobadid="620023569" href="__STATIC__/detail.html?620023569"> 高级销售培训师 </a> </td> 
-          <td class="tableleft joblsttitle" title=""></td> 
-          <td title="北京市-海淀区" class="tableleft joblsttitle"> 北京市-海淀区 </td> 
-          <td class="tableleft joblsttitle"> 2015-11-03 </td> 
-         </tr> 
-         <tr> 
-          <td class="tableleft joblsttitle"> <a title="体验店-课程顾问" jobadid="620023310" href="__STATIC__/detail.html?620023310"> 体验店-课程顾问 </a> </td> 
-          <td class="tableleft joblsttitle" title="业务发展部">业务发展部</td> 
-          <td title="北京市-海淀区" class="tableleft joblsttitle"> 北京市-海淀区 </td> 
-          <td class="tableleft joblsttitle"> 2015-11-02 </td> 
-         </tr> 
-         <tr> 
-          <td class="tableleft joblsttitle"> <a title="TMK电话邀约客服" jobadid="620023282" href="__STATIC__/detail.html?620023282"> TMK电话邀约客服 </a> </td> 
-          <td class="tableleft joblsttitle" title="业务发展部">业务发展部</td> 
-          <td title="北京市-海淀区" class="tableleft joblsttitle"> 北京市-海淀区 </td> 
-          <td class="tableleft joblsttitle"> 2015-11-02 </td> 
-         </tr> 
-         <tr> 
-          <td class="tableleft joblsttitle"> <a title="代理商培训师" jobadid="620023232" href="__STATIC__/detail.html?620023232"> 代理商培训师 </a> </td> 
-          <td class="tableleft joblsttitle" title="业务发展部">业务发展部</td> 
-          <td title="北京市-海淀区" class="tableleft joblsttitle"> 北京市-海淀区 </td> 
-          <td class="tableleft joblsttitle"> 2015-11-02 </td> 
-         </tr> 
-         <tr> 
-          <td class="tableleft joblsttitle"> <a title="销售培训师" jobadid="620021683" href="__STATIC__/detail.html?620021683"> 销售培训师 </a> </td> 
-          <td class="tableleft joblsttitle" title="青少事业部">青少事业部</td> 
-          <td title="北京市-海淀区" class="tableleft joblsttitle"> 北京市-海淀区 </td> 
-          <td class="tableleft joblsttitle"> 2015-10-23 </td> 
-         </tr> 
-         <tr> 
-          <td class="tableleft joblsttitle"> <a title="PHP开发工程师" jobadid="620021671" href="__STATIC__/detail.html?620021671"> PHP开发工程师 </a> </td> 
-          <td class="tableleft joblsttitle" title="青少事业部">青少事业部</td> 
-          <td title="北京市" class="tableleft joblsttitle"> 北京市 </td> 
-          <td class="tableleft joblsttitle"> 2015-10-23 </td> 
-         </tr> 
-         <tr> 
-          <td class="tableleft joblsttitle"> <a title="销售经理" jobadid="620021666" href="__STATIC__/detail.html?620021666"> 销售经理 </a> </td> 
-          <td class="tableleft joblsttitle" title="青少事业部">青少事业部</td> 
-          <td title="北京市" class="tableleft joblsttitle"> 北京市 </td> 
-          <td class="tableleft joblsttitle"> 2015-10-23 </td> 
-         </tr> 
-         <tr> 
-          <td class="tableleft joblsttitle"> <a title="web前端开发工程师" jobadid="620021663" href="__STATIC__/detail.html?620021663"> web前端开发工程师 </a> </td> 
-          <td class="tableleft joblsttitle" title="青少事业部">青少事业部</td> 
-          <td title="北京市" class="tableleft joblsttitle"> 北京市 </td> 
-          <td class="tableleft joblsttitle"> 2015-10-23 </td> 
-         </tr> 
-         <tr> 
-          <td class="tableleft joblsttitle"> <a title="销售培训经理" jobadid="620021668" href="__STATIC__/detail.html?620021668"> 销售培训经理 </a> </td> 
-          <td class="tableleft joblsttitle" title="青少事业部">青少事业部</td> 
-          <td title="北京市" class="tableleft joblsttitle"> 北京市 </td> 
-          <td class="tableleft joblsttitle"> 2015-10-23 </td> 
-         </tr> 
-         <tr> 
-          <td class="tableleft joblsttitle"> <a title="市场运营" jobadid="620021669" href="__STATIC__/detail.html?620021669"> 市场运营 </a> </td> 
-          <td class="tableleft joblsttitle" title="青少事业部">青少事业部</td> 
-          <td title="北京市" class="tableleft joblsttitle"> 北京市 </td> 
-          <td class="tableleft joblsttitle"> 2015-10-23 </td> 
-         </tr>  -->
         </tbody>
        </table> 
-       <span class="tablenote">共276条记录</span> 
        <div class="tablefooter"> 
-        <span>当前第1/19页</span> 
-        <script language="javascript" type="text/javascript">function _MvcPager_Keydown(e){var _kc,_pib;if(window.event){_kc=e.keyCode;_pib=e.srcElement;}else if(e.which){_kc=e.which;_pib=e.target;}var validKey=(_kc==8||_kc==46||_kc==37||_kc==39||(_kc>=48&&_kc<=57)||(_kc>=96&&_kc<=105));if(!validKey){if(_kc==13){ _MvcPager_GoToPage(_pib,19);}if(e.preventDefault){e.preventDefault();}else{event.returnValue=false;}}}function _MvcPager_GoToPage(_pib,_mp){var pageIndex;if(_pib.tagName=="SELECT"){pageIndex=_pib.options[_pib.selectedIndex].value;}else{pageIndex=_pib.value;var r=new RegExp("^\\s*(\\d+)\\s*$");if(!r.test(pageIndex)){alert("当前页码错误");return;}else if(RegExp.$1<1||RegExp.$1>_mp){alert("当前页码超出范围");return;}}var _hl=document.getElementById(_pib.id+'link').childNodes[0];var _lh=_hl.href;_hl.href=_lh.replace('=0','='+pageIndex);var evt=document.createEvent('MouseEvents');evt.initEvent('click',true,true);_hl.dispatchEvent(evt);_hl.href=_lh;}</script>
-        <div class="pager clearfix">
-         <span><a disabled="disabled" class="disabled next">首页</a></span>
-         <span><a disabled="disabled" class="disabled next">上一页</a></span>
-         <span><a href="__STATIC__/jobs.html/?PageIndex=2" class="next">下一页</a></span>
-         <span><a href="__STATIC__/jobs.html/?PageIndex=19">尾页</a></span>
-         <span class="gobtn"><input type="text" id="_MvcPager_Ctrl0_pib" value="1" onkeydown="_MvcPager_Keydown(event)" /><input type="button" value="跳转" onclick="_MvcPager_GoToPage(document.getElementById('_MvcPager_Ctrl0_pib'),19)" /><span id="_MvcPager_Ctrl0_piblink" style="display:none;width:0px;height:0px"><a href="__STATIC__/jobs.html/?PageIndex=0" onclick="window.open(this.attributes.getNamedItem('href').value,'_self')"></a></span></span>
-        </div> 
        </div> 
       </div> 
       <script type="text/javascript">

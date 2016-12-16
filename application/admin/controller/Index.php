@@ -93,7 +93,7 @@ class Index extends Auth
 	 */
 	public function index()
 	{
-
+		//dump(Session::get('user'));die;
 		return View();
 	}
 	/**

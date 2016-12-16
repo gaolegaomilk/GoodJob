@@ -16,10 +16,16 @@ class Auth extends Controller
 		// dump($request->controller());
 		if(!$this->checkLogin() && $request->controller() != 'Auth')
 		{
-			$this->error('请登录', '__ADMIN__SITE__/User/login');
+			$this->error('请登录', 'http://www.goodjob.com/admin/auth/login');
 
 		}
 	}
+
+	public function login()
+	{
+		return view();
+	}
+
 	public function dolog()
 	{
 		
@@ -36,18 +42,34 @@ class Auth extends Controller
 	}
 	public function checklog()
 	{
-		
-		$user = User::where('email', $_POST['email'])->find();
 
+		$user = User::where('email', $_POST['email'])->find();
+		//dump($user);die;
 		$name = $user->personinfo->realname;
 
 		if($_POST['email'] == $user['email'] ){
 			if(md5($_POST['password']) == $user['password'] ){
-				Session::set('username', $_POST['email']);
-				Session::set('password', md5($_POST['password']));
-				Session::set('uid', $user['uid']);
-				Session::set('realname',$name);
-				echo json_encode(array('status'=>1, 'msg'=>'登陆成功'));die();
+				Session('user', [
+						'email'=> $_POST['email'],
+						'password'=> md5($_POST['password']),
+						'uid' => $user['uid'],
+						'name'=>$name,
+						'user_type'=> $user['user_type']
+					]);
+				if(Session::get('user')['user_type'] != 2){
+					// $this->error('go  out');
+					session(null);
+					echo json_encode(array('status'=>0, 'msg'=>'您没权限访问
+						'));
+
+				}else{
+					echo json_encode(array('status'=>1, 'msg'=>'登陆成功'));die();
+				}
+				// Session::set('username', $_POST['email']);
+				// Session::set('password', md5($_POST['password']));
+				// Session::set('uid', $user['uid']);
+				// Session::set('realname',$name);
+				
 			}else {
 				echo json_encode(array('status' => 0, 'msg' => '密码错误', 'data' => []));die();
 			}
@@ -59,7 +81,9 @@ class Auth extends Controller
 	public function checkLogin()
 	{
 		// dump(session('uid'));die;
-		return session('uid');
+		//return session('uid');
+		return Session::get('user')['uid'];
+		//return $Think.Session('user')->uid;
 	}
 
 	public function checkout()

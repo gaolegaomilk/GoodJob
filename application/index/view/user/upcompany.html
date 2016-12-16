@@ -59,7 +59,7 @@
         <span id="topUserEmail" class="pad3" title=""><span class="userShortName"></span>，欢迎您！</span> 
         <span class="pad3"><a href="__STATIC__/index.html">招聘首页</a></span> 
         <em class="dl_header_line dl_padtb05">|</em> 
-        <span class="isUserCenter" style="display:none"> <span class="pad3"><a href="__STATIC__/member_apply.html">个人中心</a></span> <em class="dl_header_line dl_padtb05">|</em> </span> 
+        <span class="isUserCenter" style="display:none"> <span class="pad3"><a href="__STATIC__/member_apply.html">企业中心</a></span> <em class="dl_header_line dl_padtb05">|</em> </span> 
         <span class="pad3"><a href="__STATIC__//Portal/Account/Logout">退出</a></span> 
        </div> 
        <div class="unLogin" style="display:none"> 
@@ -79,17 +79,6 @@
     <!--申请职位 e--> 
     <!--我的简历 s--> 
     <!--简历内容 s--> 
-    <script type="text/javascript">
-
-        $(document).ready(function () {
-
-            var promptview = new UserPrompt({
-                targetSelector: 'a.accountsettings'
-                , promptText: '在账户设置中，可以改用户名和密码啦！'
-            });
-            promptview.show();
-        })
-    </script> 
     <div class="dl_bigwrap dl_heightagain clearfix dl_grey_bc"> 
      <div class="leftmenu" style="width:150px"> 
       <div class="dl_greyline_bg"> 
@@ -98,13 +87,19 @@
       <ul class="dl_menulist clearfix"> 
        <ul class="dl_menulist clearfix"> 
         <li> <a href="__SITE__/index/user/gui" class="apply">填写规则</a> </li> 
-         <!--  <li> <a href="__SITE__/index/user/upcompany" class="apply">修改企业资料</a> </li>  -->
-        <li> <a href="__SITE__/index/user/posinfo" class="shoucang">发布招聘信息</a> </li> 
+        <li> <a href="__SITE__/index/user/info" class="shoucang">填写企业资料</a></li> 
+        <li> <a href="__SITE__/index/user/password" class="shoucang">修改密码</a></li>
+        <li> <a href="__SITE__/index/user/custome" class="shoucang">修改图像</a></li>
+        <li> <a href="__SITE__/index/user/posinfo" class="shoucang">发布招聘信息</a></li>
+        <li> <a href="__SITE__/index/user/resumecom" class="shoucang">查看企业资料</a></li>
+        <li> <a href="__SITE__/index/user/coume" class="shoucang">查看简历</a></li>
+        <li> <a href="__SITE__/index/user/position" class="shoucang">已发职位</a></li>
+       <li> <a href="__SITE__/index/index" class="shoucang">返回首页</a> </li>
        </ul> 
       </ul> 
      </div> 
      <div class="rightcontent dl_height1 dl_new_error_wrap" style="width:750px;height:800px;"> 
-      <h3 class="dl_bigtit"><span class="dl_postit">修改资料</span></h3>
+      <h3 class="dl_bigtit"><span class="dl_postit">修改企业资料</span></h3>
       
       <form action="{:url('index/Auth/updateCompany')}" method="post"> 
       <div class="dl_importprofile"> 
@@ -134,12 +129,10 @@
            </li>
          <label style="font-size: 14px;position: absolute;left:450px;color:black;">公司简介: &nbsp;</label>
            <textarea style="position:absolute;top:300px;right:350px; width:480px;height:290px;" name="history" placeholder="内容不能超过300字......"></textarea>
-           <input type="submit" style="position: absolute;top:764px;left:1040px;
-           width:65px;height:34px;color:white;background: #428BCA;border:none; font-size:14px" value="提交" >
+           <input type="submit" style="position: absolute;top:763px;left:1040px;
+           width:65px;height:33px;color:white;background: #428BCA;border:none; font-size:14px;border-radius: 0.5em" value="提交" >
       </div> 
       </form>
-
-
       <button id="btn" type="button" class="btn btn-primary" style="position:absolute;top:762px;right:350px">返回上一级</button>
         <script>
         $("#btn").click(function(){

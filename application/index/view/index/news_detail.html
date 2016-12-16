@@ -28,27 +28,52 @@
     <!--module:login begin--> 
     <div class="bs-module"> 
      <div class="login-link "> 
-     <!--  <div class="login-hearder"> 
-       <ul class="header-login" style="display:none"> 
-        <li class="welcome"><span><span class="userName" style="float:none"></span>，欢迎您！</span></li> 
-        <li class="PortalIndex"><a href="member_apply.html"><span>个人中心</span></a></li> 
-        <li class="LogoutUrl"><a href="/User/Account/LogOut"><span>退出</span></a></li> 
+     <div class="login-hearder"> 
+        <ul class="header-unLogin" style=""> 
+         {if empty(session('user'))}
+        <li>
+         <a class="loginlink" href="__SITE__/index/user/log"> <span><b>企业登录</b></span></a>
+        </li>
+        <li>
+         <a class="loginlink" href="__SITE__/index/user/login"> <span><b>个人登录</b></span></a>
+        </li>
+        <li>
+        <a class="reglink" href="__SITE__/index/user/reg"><span><b>个人注册</b></span></a>
+        </li> 
+        <li>
+        <a class="reglink" href="__SITE__/index/user/register"> <span><b>企业注册</b></span> </a>
+        </li> 
        </ul> 
-       <ul class="header-unLogin" style="display:none"> 
-        <li><a class="loginlink" href="/Portal/Account/Login?returnUrl=%2Fnewsdetail%2F110000085"> <span>登录</span> </a></li> 
-        <li><a class="reglink" href="/Portal/Account/Register?returnUrl=%2Fnewsdetail%2F110000085"><span> 注册</span></a></li> 
-       </ul> 
-      </div>  -->
-
+        {else}
+            {if session('user')["user_type"] == 1}
+        <ul class="header-login" style=""> 
+        <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！{:session('user')["email"]}</b></span></li> 
+        <li class="PortalIndex"><a href="__SITE__/index/user/profile"><span><b style="color:black">个人中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/index/user/LoginOut"><span><b style="color:black">退出</b></span></a></li> 
+        </ul> 
+           {/if}
+            {if session('user')["user_type"] == 0}
+        <ul class="header-login" style=""> 
+        <li class="welcome"><span><span class="userName" style="float:none"></span><b style="color:">欢迎您！{:session('user')["email"]}</b></span></li> 
+        <li class="PortalIndex"><a href="__SITE__/index/user/gui"><span><b style="color:black">企业中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/index/user/LogOut"><span><b style="color:black">退出</b></span></a></li> 
+        </ul> 
+          {/if}
+           {if session('user')["user_type"] == 2}
+        <ul class="header-login" style=""> 
+        <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！{:session('user')["email"]}</b></span></li> 
+        <li class="PortalIndex"><a href="__SITE__/index/user/guan"><span><b>管理中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/index/user/out"><span><b>退出</b></span></a></li> 
+        </ul> 
+           {/if}
+        {/if}
+      </div>
      </div> 
     </div> 
     <!--module:login end-->
     <!--module:internalrecommend begin--> 
     <div class="bs-module"> 
      <div class="internalrecommend-default "> 
-      <div class="internaldiv"> 
-       <a class="internal" href="http://neitui.zhiye.com/51talk" target="_blank">内部推荐专区</a> 
-      </div> 
      </div> 
     </div> 
     <!--module:internalrecommend end--> 
@@ -111,11 +136,11 @@
           <b>招聘职位:</b>
          </div> 
          <div style="text-align: left; margin-bottom: 15px; width: 576px"> 
-          <span style="display: inline-block;width: 120px"> <a title="Android开发工程师" class="blue1" href="detail.html?620011106"> Android开... </a> </span> 
-          <span style="display: inline-block;width: 120px"> <a title="IOS开发工程师" class="blue1" href="detail.html?620011104"> IOS开发工程师 </a> </span> 
-          <span style="display: inline-block;width: 120px"> <a title="人事助理" class="blue1" href="detail.html?620011271"> 人事助理 </a> </span> 
-          <span style="display: inline-block;width: 120px"> <a title="Content writer" class="blue1" href="detail.html?620010184"> Content ... </a> </span> 
-          <span style="display: inline-block;width: 120px"> <a title="学术部开发助理" class="blue1" href="detail.html?620011352"> 学术部开发助理 </a> </span> 
+          <span style="display: inline-block;width: 120px"> <a title="Android开发工程师" class="blue1" href="#"> Android开... </a> </span> 
+          <span style="display: inline-block;width: 120px"> <a title="IOS开发工程师" class="blue1" href="#"> IOS开发工程师 </a> </span> 
+          <span style="display: inline-block;width: 120px"> <a title="人事助理" class="blue1" href="#"> 人事助理 </a> </span> 
+          <span style="display: inline-block;width: 120px"> <a title="Content writer" class="blue1" href="#"> Content ... </a> </span> 
+          <span style="display: inline-block;width: 120px"> <a title="学术部开发助理" class="blue1" href="#"> 学术部开发助理 </a> </span> 
          </div> 
         </div> 
        </div> 
@@ -134,7 +159,7 @@
          招聘动态
         </div>
        </div> 
-       <a href="news.html" class="morelinks">更多&gt;&gt;</a> 
+       <a href="#" class="morelinks">更多&gt;&gt;</a> 
        <div class="dongtailinks"> 
         <ul> 
           {volist name="con" id="data"}

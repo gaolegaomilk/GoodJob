@@ -10,21 +10,6 @@
   <link type="text/css" rel="stylesheet"  href="__STATIC__/css/5_themes_default_jqueryuiselectmenu.css" front="css" /> 
   <link type="text/css" rel="stylesheet"  href="__STATIC__/css/5_themes_default_jqueryuitheme.css" front="css" />
   <link rel="stylesheet" href="__STATIC__/css/bootstrap.css">
-  <script type="text/javascript">
-       window.PERF_START=new Date;
-       function _splash(page, uid, tid, pid){
-        uid =  uid || 0;  // 这里是用户ID
-        tid =  tid || 0;   // 这里是租户ID
-        pid =  pid || 'unknown';  // 这里是项目标识
-        var now = new Date;
-        var start = window.PERF_START || now;
-        var diff = now - start;
-        var rand = Math.round(Math.random()*1000000);
-        var url= document.location.protocol+'//opsapi.beisen.com/opsapi/AddLog?appName='+pid+'&label=%5Bsplash%5D%20'+page+'&uid='+uid+'&tid='+tid+'&time='+diff+'&type=1&sid='+rand+'&step=0';
-        var img = new Image;
-        img.src = url;
-    }
-    </script> 
   <script type="text/javascript" src="__STATIC__/js/5_themes_default_jquery191.js?v=0.0.0.9"></script> 
   <script type="text/javascript" src="__STATIC__/js/5_themes_default_jqueryflexslidermin.js?v=0.0.0.9"></script> 
   <script type="text/javascript" src="__STATIC__/js/5_themes_default_jqueryuicore1.js?v=0.0.0.9"></script> 
@@ -32,16 +17,6 @@
   <script type="text/javascript" src="__STATIC__/js/5_themes_default_jqueryuiwidget.js?v=0.0.0.9"></script> 
   <script type="text/javascript" src="__STATIC__/js/5_themes_default_jqueryuiselectmenu1.js?v=0.0.0.9"></script> 
   <script type="text/javascript" src="__STATIC__/js/5_themes_default_demo.js?v=0.0.0.9"></script> 
-  <script type="text/javascript">var $bs_vars={'st':'http://stnew.beisen.com/','version':'2015.09.17.001','constSite':'http://const.tms.beisen.com'};function vstr(str) {
-         if (typeof ($bs_vars) == 'undefine')
-             return str;
-         var result = str;
-         for (var v in $bs_vars) {
-             var regex = new RegExp('\\$\\{' + v.toString() + '\\}|\\{' + v.toString() + '\\}', 'igm');
-             result = result.replace(regex, $bs_vars[v]);
-         }
-         return result;
-     };</script>
   <!--引用静态文件:requirejs--> 
   <script type="text/javascript" src="__STATIC__/js/require.js"></script> 
   <title>首页</title> 
@@ -64,38 +39,45 @@
         <ul class="header-unLogin" style=""> 
          {if empty(session('user'))}
         <li>
-         <a class="loginlink" href="__SITE__/index/user/log"> <span>企业登录</span></a>
+         <a class="loginlink" href="__SITE__/index/user/log"> <span><b>企业登录</b></span></a>
         </li>
         <li>
-         <a class="loginlink" href="__SITE__/index/user/login"> <span>个人登录</span></a>
+         <a class="loginlink" href="__SITE__/index/user/login"> <span><b>个人登录</b></span></a>
         </li>
         <li>
-        <a class="reglink" href="__SITE__/index/user/reg"><span> 个人注册</span></a>
+        <a class="reglink" href="__SITE__/index/user/reg"><span><b>个人注册</b></span></a>
         </li> 
         <li>
-        <a class="reglink" href="__SITE__/index/user/register"> <span>企业注册</span> </a>
+        <a class="reglink" href="__SITE__/index/user/register"> <span><b>企业注册</b></span> </a>
         </li> 
        </ul> 
-        {elseif session('user')["user_type"] == 1}
+        {else}
+            {if session('user')["user_type"] == 1}
         <ul class="header-login" style=""> 
         <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！{:session('user')["email"]}</b></span></li> 
-        <li class="PortalIndex"><a href="__SITE__/index/user/profile"><span><b>个人中心</b></span></a></li> 
-        <li class="LogoutUrl"><a href="__SITE__/index/user/LoginOut"><span><b>退出</b></span></a></li> 
+        <li class="PortalIndex"><a href="__SITE__/index/user/profile"><span><b style="color:black">个人中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/index/user/LoginOut"><span><b style="color:black">退出</b></span></a></li> 
         </ul> 
-        {elseif session('user')["user_type"] == 0}
+           {/if}
+            {if session('user')["user_type"] == 0}
+        <ul class="header-login" style=""> 
+        <li class="welcome"><span><span class="userName" style="float:none"></span><b style="color:">欢迎您！{:session('user')["email"]}</b></span></li> 
+        <li class="PortalIndex"><a href="__SITE__/index/user/gui"><span><b style="color:black">企业中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/index/user/LogOut"><span><b style="color:black">退出</b></span></a></li> 
+        </ul> 
+          {/if}
+           {if session('user')["user_type"] == 2}
         <ul class="header-login" style=""> 
         <li class="welcome"><span><span class="userName" style="float:none"></span><b>欢迎您！{:session('user')["email"]}</b></span></li> 
-        <li class="PortalIndex"><a href="__SITE__/index/user/gui"><span><b>企业中心</b></span></a></li> 
-        <li class="LogoutUrl"><a href="__SITE__/index/user/LogOut"><span>退出</span></a></li> 
+        <li class="PortalIndex"><a href="__ADMIN__SITE__"><span><b>管理中心</b></span></a></li> 
+        <li class="LogoutUrl"><a href="__SITE__/index/user/out"><span><b>退出</b></span></a></li> 
         </ul> 
-         {elseif session('user')["user_type"] == 2}
-        <ul class="header-login" style=""> 
-        <li class="welcome"><span><span class="userName" style="float:none"></span>欢迎您！{:session('user')["email"]}</span></li> 
-        <li class="PortalIndex"><a href="__ADMIN__SITE__/User/login"><span>管理中心</span></a></li> 
-        <li class="LogoutUrl"><a href="__SITE__/index/user/out"><span>退出</span></a></li> 
-        </ul> 
+           {/if}
         {/if}
       </div>
+
+
+      
      </div> 
     </div> 
     <!--module:login end-->
@@ -131,7 +113,9 @@
     <div class="imageslider-default "> 
      <div class="flexslider"> 
       <ul class="slides"> 
-       <li> <img  src="__STATIC__/images/104003_medias_2015923_201592317513947.jpg" /> </li> 
+    <!--    <li> <img  src="__STATIC__/images/104003_medias_2015923_201592317513947.jpg" /> </li>  -->
+          <!--  <li><img src="__STATIC__/images/pin.jpg" style="height:280px;"></li>  -->
+          <li><img src="__STATIC__/images/commonbanner.jpg" style="height:245px;"></li>
       </ul> 
      </div> 
    
@@ -146,8 +130,6 @@
      <div class="positionsearch-smallfresh "> 
       <a name="jlt"></a> 
       <div class="zhiweisousuo bodertop"> 
-
-
        <form action="{:url('index/index/search')}" method="post"> 
         <div class="zhiweisousuo bodertop selectmod"> 
         <div class="parttitleline"></div> 
@@ -206,7 +188,7 @@
          招聘动态
         </div>
        </div> 
-       <a  href="__STATIC__/news.html" class="morelinks">更多&gt;&gt;</a> 
+       <a  href="#" class="morelinks">更多&gt;&gt;</a> 
        <div class="dongtailinks"> 
         <ul> 
           {volist name="con" id="data"}
@@ -224,26 +206,26 @@
  <!--module:jobstab begin--> 
    <div class="bs-module"> 
     <div class="jobstab-default"> 
-     <div class="zhiweiliebiao" style="width:678px"> 
+     <div class="zhiweiliebiao" style="width:678px;height:660px;"> 
       <div class="listnav" > 
        <ul> 
-        <li><a href="javascript:void(0)" class="listchooseon" id="hotjob" style="position:absolute;top:708px;left:323px;">热招职位</a></li> 
-        <li><a href="javascript:void(0)" id="longjob" style="position:absolute;top:708px;left:245px;">长招职位</a></li> 
+        <li><a href="javascript:void(0)" class="listchooseon" id="hotjob" style="position:absolute;top:603px;left:323px;">热招职位</a></li> 
+        <li><a href="javascript:void(0)" id="longjob" style="position:absolute;top:603px;left:245px;">长招职位</a></li> 
        </ul> 
-       <a href="javascript:void(0)" class="listmorelinks">更多&gt;&gt;</a> 
+       <a href="__SITE__/index/index" class="listmorelinks">更多</a> 
       </div> 
       <div class="listlinks list"> 
         <!--热招招聘-->
        <ul id="ulhotjob"> 
         {volist name="hot" id="val"}
-        <li><span><img src="__STATIC__/images/point.png" alt="">&nbsp; </span><a href="__SITE__/index/index/details/?id={$val.pid}" title="业务培训总监/区域培训总监 /销售运 营总监">{$val.position}</a></li> 
+        <li><span><img src="__STATIC__/images/point.png" alt="">&nbsp; </span><a href="__SITE__/index/index/details/?id={$val.pid}" style="color:black">{$val.position}</a></li> 
         {/volist}
         </ul> 
         <div></div>
         <!--长期招聘-->
        <ul id="ullongjob"> 
         {volist name="len" id="valu"}
-        <li><span><img src="__STATIC__/images/point.png" alt=""> &nbsp;<a href="__SITE__/index/index/details/?id={$valu.pid}" title="学术总监">{$valu.position}</a></li> 
+        <li><span><img src="__STATIC__/images/point.png" alt=""> &nbsp;<a href="__SITE__/index/index/details/?id={$valu.pid}" title="学术总监" style="color:black;">{$valu.position}</a></li> 
         {/volist}
       
        </ul> 
@@ -267,7 +249,6 @@
                 var chooseId = $(".listchooseon").attr("id");
                 chooseId = "#ul" + chooseId;
                 $(chooseId).show();
-
             }
         }
 

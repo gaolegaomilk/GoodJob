@@ -12,18 +12,13 @@ use think\Session;
 use app\index\model\Business;
 use app\index\model\Content;
 class Index extends Controller
-{
-
-
-  
+{ 
       /**
        * 对页面板块类型的遍历  招聘类型，行业 工作地区 职位
        */
     public function index()
     {
 		
-        
-
 		$obj = new Content;
         $con = $obj->sel();
         $hot = $obj->hot();
@@ -33,7 +28,6 @@ class Index extends Controller
         $this->assign('con',$con);
         $this->assign('hot',$hot);
         $this->assign('len',$len);
-		
 		
         $arr = [];
         $category= Db::name('category')->select();
@@ -56,8 +50,7 @@ class Index extends Controller
         $this->assign('vocation', $vocation);
         $this->assign('select', $select);
         $this->assign('page', $page);
-        //对分页的实现
-       // $list = Db::name('position')->where()->paginate(10);
+        // $list = Db::name('position')->where()->paginate(10);
         //去除重复的查询
     	return $this->fetch();
     }
@@ -74,7 +67,7 @@ class Index extends Controller
         $city = Db::name('city')->select();
         $vocation = Db::name('vocation')->select();
         //职位表的内容
-        $select = Db::name('position')->paginate(5);
+        $select = Db::name('position')->select();
         //公司的资料
         $business = Db::name('business')->select();
         //dump($select);
@@ -176,7 +169,29 @@ class Index extends Controller
       
         return $this->fetch();
     }
-         //对社会招聘的遍历
+
+      /**
+     * 招聘动态详情
+     * @return [type] [description]
+     */
+    public function news_detail()
+    {
+        $obj = new Content;
+        $con = $obj->sel();
+        $this->assign('con',$con);
+
+        $tid = $_GET['tid'];
+        $obj = new Content();
+        $info = $obj->findinfo($tid);
+        
+        $this->assign('info',$info);
+        //dump($info);die;
+        return $this->fetch();
+        // return view('', compact('info'));
+    }
+     /** 
+      * 对首页社会招聘类的遍历
+      */
      public function content()
     {
         $arr = [];
@@ -323,7 +338,7 @@ class Index extends Controller
                     ->where('sid', 'in', $sid)
                     ->where('cid', 'in', $cid)
                     ->where('vid', 'in', $vid)->where('position','like',$search)
-                    ->paginate(10);;
+                    ->paginate(30);;
         $page = $data->render();
 
         $this->assign('data', $data); 
@@ -333,22 +348,35 @@ class Index extends Controller
 
     public function add()
     {
+        //查出企业信息表中有没有用户信息
+
         $uid = Session::get('user')['uid'];
+
         $bid = $_GET['id'];
         $bus = new Business();
         $bus->user_id = $bid;
          if (empty($uid)) {
             $this->error('请先登录','index/index');
         } else {
-           $add = $bus->save(['user_id' => $uid],['uid'=> $bid]); 
-           if ($add) {
-            $this->success('申请成功','index/index');
-           } else {
-            $this->error('申请失败', 'index/user/login');
-           }
+
+            //对企业进行查询是否用户已经对本公司提交过申请
+            $info = Db::name('business')->where('uid',$bid)->select();
+            $person = Db::name('personinfo')->where('user_id', $uid)->select();
+            if (empty($person)){
+               $this->success('你还没有填写简历','index/index');
+            } 
+            if ($info[0]['user_id'] == $uid) {
+                $this->success('你已经申请过,7天后可以申请');
+            } else {
+                 $add = $bus->save(['user_id' => $uid],['uid'=> $bid]); 
+                 if ($add) {
+                     $this->success('申请成功','index/index');
+                   }else {
+                     $this->error('申请失败', 'index/user/login');
+                   }
+            } 
         }
     }
-
 }
 
 

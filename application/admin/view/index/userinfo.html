@@ -35,12 +35,12 @@
 </div>
 <script>
 	$(".sidebar-title").click(function() {
-		if ($(tdis).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
-			$(tdis).next().slideDown(200);
-			$(tdis).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
+		if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
+			$(this).next().slideDown(200);
+			$(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
 		} else {
-			$(tdis).next().slideUp(200);
-			$(tdis).parent(".sidebar-nav").addClass("sidebar-nav-fold");
+			$(this).next().slideUp(200);
+			$(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
 		}
 	});
 </script>

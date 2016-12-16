@@ -29,7 +29,6 @@
       body{background-image:url(__STATIC__/images/dd.jpg);}
   </style>
   <link rel="stylesheet" href="__STATIC__/admin/css/bootstrap.css" />
-
  </head> 
  <body> 
   <div class="bs_deliver"> 
@@ -71,9 +70,14 @@
       </div> 
       <ul class="dl_menulist clearfix"> 
        <li> <a href="__SITE__/index/user/gui" class="profile">填写规则</a> </li> 
-       <li> <a href="__SITE__/index/user/info" class="profile">填写企业资料</a> </li> 
-       <li> <a href="__SITE__/index/user/upCompany" class="accountSettings">修改企业资料</a> </li>
-       <li> <a href="__SITE__/index/user/posinfo" class="accountSettings">发布招聘信息</a> </li>
+       <li> <a href="__SITE__/index/user/info" class="shoucang">填写企业资料</a></li> 
+       <li> <a href="__SITE__/index/user/upcompany" class="shoucang">修改企业资料</a> </li>
+       <li> <a href="__SITE__/index/user/password" class="shoucang">修改密码</a></li>
+        <li> <a href="__SITE__/index/user/custome" class="shoucang">修改图像</a></li>
+        <li> <a href="__SITE__/index/user/posinfo" class="shoucang">发布招聘信息</a></li>
+        <li> <a href="__SITE__/index/user/coume" class="shoucang">查看简历</a></li>
+        <li> <a href="__SITE__/index/user/position" class="shoucang">已发职位</a></li>
+       <li> <a href="__SITE__/index/index" class="shoucang">返回首页</a> </li>
       </ul> 
      </div> 
      <div class="rightcontent dl_height1 dl_new_error_wrap" style="width:750px;height:800px;"> 
@@ -152,8 +156,8 @@
               <ul> 
                <li>公司名称：{$resumecom['name']}<span class="preview_text"></span>
                 </li> 
-                <!-- <li>
-                  <img src="__STATI__/uploads/{$resumecom['picture']}" style="position: absolute;right:300px;top:150px;"/>
+               <!--  <li>
+                  <img src="__STATIC__/uploads/{$resumecom['picture']}" style="position: absolute;right:300px;top:150px;"/>
                 </li> -->
                 <li>地点： 
                {foreach $city as $c}
@@ -185,19 +189,7 @@
             </div> 
            </div> 
           </div> 
-          <div class="dl_myrightfile"> 
-           <div style="width: 118px; margin-left: 12px"> 
-            <a name="btnSingleSave" href="__STATIC__/#this" class="dl_btn_grey3" style="display:none;"> <span>保存</span> </a> 
-            <a name="btnSingleCancel" href="__STATIC__/#this" class="dl_btn_grey3" style="display:none;float: right;"> <span>取消</span> </a>  
-           </div> 
-           <img id="idPhoto" style="width: 120px; height: 140px; padding-top: 10px; display: none;" src="__STATIC__/images/upfile.jpg" /> 
-           <br /> 
-           <a class="blue" id="idPhotoUploadBtn" href="__STATIC__/javascript:void(0)" style="display:none;">上传照片</a> 
-           <ul id="idPhotoerrinfo" class="warninfo" style="color: #f17f7f; font-size: 12px;"> 
-           </ul> 
-           <ul id="idPhotowarninfo" class="warninfo" style="display:none;"> 
-           </ul> 
-          </div> 
+          
          </div> 
         </form> 
         <input type="hidden" class="viewName" value="201307040448453721" /> 
@@ -245,12 +237,14 @@
        {$resumecom['history']}
       </div> 
       </div>
-      <div style="width:150px;height:150px; position:absolute;top:173px;left:868px;">
       {if empty($resumecom['picture'])}
-       <img src="__STATI__/images/upfile.jpg" style="width:150px;height:150px;border-radius:70px;" alt="" />
-      {else}
-      <img src="__STATI__/uploads/{$resumecom['picture']}" style="width:150px;height:150px;border-radius:70px;" alt="" />
-      {/if}
+      <div style="width:150px;height:150px;position:absolute;top:170px;left:850px;"> 
+      <img src="__STATIC__/images/upfile.jpg" style="width:150px;height:150px;border-radius:70px;" alt="" />
       </div>
+     {else}
+     <div style="width:150px;height:150px;position:absolute;top:170px;left:850px;">
+     <img src="__STATI__/uploads/{$resumecom['picture']}" style="width:150px;height:150px;border-radius:70px;" alt="" />
+      </div>
+      {/if}   
  </body> 
 </html>

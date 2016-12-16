@@ -55,27 +55,27 @@
                 }, 
                 {
                     "country": "秦皇岛",
-                    "visits": $("#nuth").attr("values"),
+                    "visits": $("#cqnhuangdao").attr("values"),
                     "color": "#0D8ECF"
                 },  
                 {
                     "country": "唐山",
-                    "visits": $("#nuth").attr("values"),
+                    "visits": $("#ctangshan").attr("values"),
                     "color": "#0D52D1"
                 }, 
                 {
                     "country": "张家口",
-                    "visits": $("#nuth").attr("values"),
+                    "visits": $("#czhangjiakou").attr("values"),
                     "color": "#2A0CD0"
                 },
                   {
                     "country": "承德",
-                    "visits": $("#nuth").attr("values"),
+                    "visits": $("#cchengde").attr("values"),
                     "color": "#8A0CCF"
                 },
                   {
                     "country": "沧州",
-                    "visits": $("#nuth").attr("values"),
+                    "visits": $("#ccangzhou").attr("values"),
                     "color": "#CD0D74"
                 }
             ];
@@ -175,3 +175,14 @@
             <div style="text-align:center;margin:20 auto 0 auto;font-size:16px">站点统计表__ <span>总数:{$a80+$a90+$a00+$a70+$nuth}</span></div>
         </div>
 
+<script>
+    $(".sidebar-title").click(function() {
+        if ($(this).parent(".sidebar-nav").hasClass("sidebar-nav-fold")) {
+            $(this).next().slideDown(200);
+            $(this).parent(".sidebar-nav").removeClass("sidebar-nav-fold");
+        } else {
+            $(this).next().slideUp(200);
+            $(this).parent(".sidebar-nav").addClass("sidebar-nav-fold");
+        }
+    });
+</script>

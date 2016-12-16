@@ -84,7 +84,16 @@
         <li> <a href="__SITE__/index/user/gui" class="apply">填写规则</a> </li> 
         <li> <a href="__SITE__/index/user/info" class="apply">填写企业信息</a> </li> 
         <li> <a href="__SITE__/index/user/upcompany" class="apply">修改企业信息</a> </li> 
-        <li> <a href="__SITE__/index/user/resumecom" class="apply">企业详情</a> </li>
+        
+        <li> <a href="__SITE__/index/user/password" class="shoucang">修改密码</a></li>
+        <li> <a href="__SITE__/index/user/custome" class="shoucang">修改图像</a></li>
+      
+       <li> <a href="__SITE__/index/user/posinfo" class="shoucang">发布招聘信息</a></li>
+     
+       <li> <a href="__SITE__/index/user/coume" class="shoucang">查看简历</a></li>
+       <li> <a href="__SITE__/index/user/resumecom" class="shoucang">查看企业资料</a></li>
+       <li> <a href="__SITE__/index/user/position" class="shoucang">已发职位</a></li>
+       <li> <a href="__SITE__/index/index" class="shoucang">返回首页</a> </li>
        </ul> 
       </ul> 
      </div> 
@@ -171,12 +180,12 @@
                   {if $person['sex'] == 0}
                   <li>
                     <label style="font-size: 14px;"><b>性别:</b></label>
-                    <span style="width:300px;margin-left: 20px;">男</span>
+                    <span style="width:300px;margin-left: 20px;">女</span>
                   </li>
                   {else}
                     <li>
                     <label style="font-size: 14px;"><b>性别:</b></label>
-                    <span style="width:300px;margin-left: 20px;">女</span>
+                    <span style="width:300px;margin-left: 20px;">男</span>
                    </li>
                   {/if}
                 </ul> 
@@ -237,7 +246,7 @@
            </div> 
           </div> 
          </div> 
-         <div class="dl_borderdashed"></div> 
+         <div class="dl_borderdashed" style="border-bottom: none;"></div> 
        </div> 
        <input type="hidden" class="viewName" value="201307040448456801" />  
       </div> 
@@ -263,7 +272,7 @@
            </div> 
           </div> 
          </div> 
-         <div class="dl_borderdashed"></div> 
+         <div class="dl_borderdashed" style="border-bottom:none;"></div> 
         </form> 
        </div> 
        <input type="hidden" class="viewName" value="201307040448457121" /> 
